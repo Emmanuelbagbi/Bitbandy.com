@@ -619,11 +619,11 @@ const BitbandyHomepage = () => {
                 >
                   HOST YOUR<br />
                   NEXT EVENT<br />
-                  <span className="text-green-500">WITH US.</span>
+                  <span style={{ color: '#c084fc' }}>WITH US.</span>
                 </h2>                <p className="text-[13px] text-purple-200/60 leading-relaxed mb-7 max-w-[240px] lg:text-[15px] lg:max-w-[360px] lg:mb-0">Simple setup, fraud-proof tickets, and instant payouts.</p>
               </div>
               <div className="relative flex items-center gap-4 lg:flex-col lg:items-start lg:gap-3 lg:shrink-0">
-                <Link to="/host" className="bg-green-500 text-zinc-900 font-normal text-[14px] px-6 py-3 rounded-xl lg:text-[15px] lg:px-8 lg:py-4 lg:w-full hover:bg-green-600 transition-colors">Create an Event</Link>
+                <Link to="/host" className="text-zinc-900 font-normal text-[14px] px-6 py-3 rounded-xl lg:text-[15px] lg:px-8 lg:py-4 lg:w-full transition-colors" style={{ backgroundColor: '#c084fc' }}>Create an Event</Link>
                 <Link to="/for-organizers" className="text-[13px] font-normal text-purple-300/70 lg:text-[14px] hover:text-purple-200 transition-colors">Learn more <ArrowRightIcon /></Link>
               </div>
             </div>
