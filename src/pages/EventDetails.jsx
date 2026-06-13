@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import EventCard from '../components/EventCard';
 
 const SearchIcon = () => <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="7" /><path d="M16.5 16.5 21 21" strokeLinecap="round" /></svg>;
 const MenuIcon = () => <svg width="18" height="14" viewBox="0 0 18 14" fill="none"><line x1="0" y1="1" x2="18" y2="1" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" /><line x1="4" y1="7" x2="18" y2="7" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" /><line x1="8" y1="13" x2="18" y2="13" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" /></svg>;
@@ -35,33 +36,49 @@ const relatedEvents = [
   {
     id: 'cmqb5c8os0001i8047mgm4cyr',
     title: 'Rev Battle 1.0',
+    category: 'education',
     date: 'Sun, Jun 14',
+    location: 'Port Harcourt',
     price: 5000,
     isHot: true,
+    organizer: 'Tech Events NG',
+    countdown: '2 days',
     image: 'https://huhnbrdgiwntdaayfakl.supabase.co/storage/v1/object/public/event-covers/cmqarjccw0002l7055mcgb49j/drafts/6489fae1-ec46-4010-9ccf-bb396922929f.jpg',
   },
   {
     id: 'cmqb8gw520001la04azxnfyi5',
     title: 'ByteTech Summit',
+    category: 'fashion',
     date: 'Thu, Jun 25',
+    location: 'Port Harcourt',
     price: 0,
     isHot: false,
+    organizer: 'ByteTech Team',
+    countdown: '13 days',
     image: 'https://huhnbrdgiwntdaayfakl.supabase.co/storage/v1/object/public/event-covers/cmqarjccw0002l7055mcgb49j/drafts/7682124e-a1b5-42a6-b739-7b30e6617867.png',
   },
   {
     id: 'cmpbxnqt20002ujdkq2xqqbix',
     title: 'Wiz Summer Fiesta 2026',
+    category: 'music',
     date: 'Mon, Jun 29',
+    location: 'Lagos',
     price: 45000,
     isHot: true,
+    organizer: 'Wiz Events',
+    countdown: '17 days',
     image: 'https://huhnbrdgiwntdaayfakl.supabase.co/storage/v1/object/public/event-covers/cmox7p0bh0000ujusmpkcbp53/cmpbxnqt20002ujdkq2xqqbix/2b4f5347-6c0e-4493-a1b6-1505c036373c.jpg',
   },
   {
     id: 'cmqb8os6v0001js04ksx6fcsq',
     title: 'Bole Outreach',
+    category: 'parties',
     date: 'Sat, Jul 4',
+    location: 'Lagos',
     price: 7000,
     isHot: true,
+    organizer: 'Food Fest NG',
+    countdown: '22 days',
     image: 'https://huhnbrdgiwntdaayfakl.supabase.co/storage/v1/object/public/event-covers/cmqarjccw0002l7055mcgb49j/drafts/d3f6ef18-ef8c-448a-91da-97df1ecf54aa.jpg',
   },
 ];
@@ -348,27 +365,9 @@ const EventDetailPage = () => {
             </div>
             <div className="flex gap-3 overflow-x-auto scrollbar-hide px-5 pb-1">
               {relatedEvents.map((event) => (
-                <a key={event.id} className="block shrink-0 w-[160px] card-press" href={`/events/${event.id}`}>
-                  <div className="bg-vibe-card rounded-xl overflow-hidden border border-vibe-border">
-                    <div className="relative h-[90px]">
-                      <img alt={event.title} className="object-cover w-full h-full" src={event.image} />
-                      {event.isHot && (
-                        <div className="absolute top-2 left-2 bg-amber-500 text-white text-[9px] font-normal px-1.5 py-0.5 rounded-full">
-                          HOT
-                        </div>
-                      )}
-                    </div>
-                    <div className="px-3 py-2.5">
-                      <p className="font-heading font-normal text-[14px] text-zinc-900 line-clamp-2 leading-snug mb-1">
-                        {event.title}
-                      </p>
-                      <p className="text-[10px] text-zinc-400 mb-1.5">{event.date}</p>
-                      <p className="text-[13px] font-normal text-zinc-900">
-                        {event.price === 0 ? 'FREE' : `₦${event.price.toLocaleString()}`}
-                      </p>
-                    </div>
-                  </div>
-                </a>
+                <Link key={event.id} to={`/events/${event.id}`} className="block shrink-0 w-[260px]">
+                  <EventCard event={event} />
+                </Link>
               ))}
             </div>
           </div>

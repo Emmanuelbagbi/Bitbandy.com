@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import MobileMenu from '../components/MobileMenu';
+import EventCard from '../components/EventCard';
 // import { Herobanner } from '../assets/banner.png'
 
 // Icons
@@ -31,10 +32,10 @@ const FreeIconLarge = () => <svg width="30" height="30" viewBox="0 0 24 24" fill
 
 // Mock event data
 const eventsData = [
-  { id: '1', title: 'Rev Battle 1.0', category: 'education', date: 'Sun, Jun 14', venue: 'Elekahia Stadium', location: 'Port Harcourt', price: 5000, image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&h=400&fit=crop' },
-  { id: '2', title: 'Vybz', category: 'corporate', date: 'Wed, Jun 17', venue: 'Julirose Hotel & Suites', location: 'Port Harcourt', price: 5000, image: 'https://images.unsplash.com/photo-1499364615650-ec38552f4f34?w=600&h=400&fit=crop' },
-  { id: '3', title: 'Wiz Summer Fiesta 2026', category: 'education', date: 'Mon, Jun 29', venue: 'Landmark Event Centre', location: 'Lagos', price: 45000, image: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=600&h=400&fit=crop' },
-  { id: '4', title: 'Jeriq Summer Fest', category: 'music', date: 'Wed, Jul 22', venue: 'Port Harcourt', location: 'Port Harcourt', price: 50000, image: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=600&h=400&fit=crop' }
+  { id: '1', title: 'Rev Battle 1.0', category: 'education', date: 'Sun, Jun 14', venue: 'Elekahia Stadium', location: 'Port Harcourt', price: 5000, organizer: 'Tech Events NG', countdown: '2 days', image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&h=400&fit=crop' },
+  { id: '2', title: 'Vybz', category: 'corporate', date: 'Wed, Jun 17', venue: 'Julirose Hotel & Suites', location: 'Port Harcourt', price: 5000, organizer: 'Julirose Events', countdown: '5 days', image: 'https://images.unsplash.com/photo-1499364615650-ec38552f4f34?w=600&h=400&fit=crop' },
+  { id: '3', title: 'Wiz Summer Fiesta 2026', category: 'education', date: 'Mon, Jun 29', venue: 'Landmark Event Centre', location: 'Lagos', price: 45000, organizer: 'Wiz Events', countdown: '17 days', image: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=600&h=400&fit=crop' },
+  { id: '4', title: 'Jeriq Summer Fest', category: 'music', date: 'Wed, Jul 22', venue: 'Port Harcourt', location: 'Port Harcourt', price: 50000, organizer: 'Jeriq Music', countdown: '39 days', image: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=600&h=400&fit=crop' }
 ];
 
 const freeLowCostEvents = [
@@ -62,66 +63,85 @@ const trendingEvents = [
   {
     id: 'cmqb5c8os0001i8047mgm4cyr',
     title: 'Rev Battle 1.0',
+    category: 'education',
     date: 'Sun, Jun 14',
     location: 'Port Harcourt',
     price: 5000,
     priceLabel: 'From ₦5,000',
     isFree: false,
+    organizer: 'Tech Events NG',
+    countdown: '2 days',
     image: 'https://huhnbrdgiwntdaayfakl.supabase.co/storage/v1/object/public/event-covers/cmqarjccw0002l7055mcgb49j/drafts/6489fae1-ec46-4010-9ccf-bb396922929f.jpg',
   },
   {
     id: 'cmqazk8gl0001js04df6irrm1',
     title: 'Vybz',
+    category: 'corporate',
     date: 'Wed, Jun 17',
     location: 'Port Harcourt',
     price: 5000,
     priceLabel: 'From ₦5,000',
     isFree: false,
+    organizer: 'Julirose Events',
+    countdown: '5 days',
     image: 'https://huhnbrdgiwntdaayfakl.supabase.co/storage/v1/object/public/event-covers/cmqarjccw0002l7055mcgb49j/drafts/7c8925c1-a542-44c3-80d2-af6b445a9cf9.png',
   },
   {
     id: 'cmqb8gw520001la04azxnfyi5',
     title: 'ByteTech Summit',
+    category: 'fashion',
     date: 'Thu, Jun 25',
     location: 'Port Harcourt',
     price: 0,
     priceLabel: 'FREE',
     isFree: true,
+    organizer: 'ByteTech Team',
+    countdown: '13 days',
     image: 'https://huhnbrdgiwntdaayfakl.supabase.co/storage/v1/object/public/event-covers/cmqarjccw0002l7055mcgb49j/drafts/7682124e-a1b5-42a6-b739-7b30e6617867.png',
   },
   {
     id: 'cmpbxnqt20002ujdkq2xqqbix',
     title: 'Wiz Summer Fiesta 2026',
+    category: 'music',
     date: 'Mon, Jun 29',
     location: 'Lagos',
     price: 45000,
     priceLabel: 'From ₦45,000',
     isFree: false,
+    organizer: 'Wiz Events',
+    countdown: '17 days',
     image: 'https://huhnbrdgiwntdaayfakl.supabase.co/storage/v1/object/public/event-covers/cmox7p0bh0000ujusmpkcbp53/cmpbxnqt20002ujdkq2xqqbix/2b4f5347-6c0e-4493-a1b6-1505c036373c.jpg',
   },
   {
     id: 'cmqb8os6v0001js04ksx6fcsq',
     title: 'Bole Outreach',
+    category: 'parties',
     date: 'Sat, Jul 4',
     location: 'Lagos',
     price: 7000,
     priceLabel: 'From ₦7,000',
     isFree: false,
+    organizer: 'Food Fest NG',
+    countdown: '22 days',
     image: 'https://huhnbrdgiwntdaayfakl.supabase.co/storage/v1/object/public/event-covers/cmqarjccw0002l7055mcgb49j/drafts/d3f6ef18-ef8c-448a-91da-97df1ecf54aa.jpg',
   },
   {
     id: 'cmpu876ed0004uj9w3h5wbll2',
     title: 'Jeriq Summer Fest',
+    category: 'music',
     date: 'Wed, Jul 22',
     location: 'Port Harcourt',
     price: 50000,
     priceLabel: 'From ₦50,000',
     isFree: false,
+    organizer: 'Jeriq Music',
+    countdown: '39 days',
     image: 'https://huhnbrdgiwntdaayfakl.supabase.co/storage/v1/object/public/event-covers/cmox7p0bh0000ujusmpkcbp53/drafts/a84b48e3-4b20-4859-a49e-50e4eaa4dcd8.jpg',
   },
   {
     id: 'cmpu8742r0001uj9wq4tgaxya',
     title: 'Jeriq Summer Fest',
+    category: 'music',
     date: 'Wed, Jul 22',
     location: 'Port Harcourt',
     price: 50000,
@@ -161,17 +181,8 @@ const TrendingSection = () => {
         </div>
         <div className="flex gap-3 overflow-x-auto scrollbar-hide pl-5 pr-5 pb-1 lg:grid lg:grid-cols-4 lg:overflow-visible lg:pl-0 lg:pr-0 lg:pb-0 lg:mt-2">
           {displayedEvents.map((event) => (
-            <Link key={event.id} className="shrink-0 w-[260px] lg:w-auto bg-white rounded-xl overflow-hidden block shadow-sm ring-1 ring-zinc-100 hover:shadow-md transition-shadow" to={`/events/${event.id}`}>
-              <div className="relative h-[155px] lg:h-[170px] overflow-hidden">
-                <img alt={event.title} loading="lazy" className="object-cover object-center w-full h-full" src={event.image} />
-                <div className="absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-black/45 to-transparent pointer-events-none"></div>
-                {event.isFree && <span className="absolute top-2.5 right-2.5 z-10 bg-amber-500 text-zinc-900 text-[9px] font-normal uppercase tracking-wider px-2 py-0.5 rounded-md pointer-events-none">FREE</span>}
-              </div>
-              <div className="px-3.5 py-3">
-                <p className="text-[10px] font-normal text-zinc-500 uppercase tracking-wider mb-1.5">{event.date} · {event.location}</p>
-                <h3 className="font-heading font-normal text-[16px] text-zinc-900 leading-snug line-clamp-1 mb-2">{event.title}</h3>
-                <p className={`text-[15px] font-normal ${event.isFree ? 'text-amber-500' : 'text-zinc-900'}`}>{event.priceLabel}</p>
-              </div>
+            <Link key={event.id} className="shrink-0 w-[260px] lg:w-auto" to={`/events/${event.id}`}>
+              <EventCard event={event} />
             </Link>
           ))}
         </div>
@@ -546,19 +557,8 @@ const BitbandyHomepage = () => {
             </div>
             <div className="flex gap-4 overflow-x-auto scrollbar-hide pl-5 pr-5 pb-1 lg:grid lg:grid-cols-4 lg:overflow-visible">
               {filteredEvents.map((event) => (
-                <Link key={event.id} to={`/events/${event.id}`} className="shrink-0 w-[240px] lg:w-auto bg-white rounded-xl overflow-hidden block hover:shadow-lg transition-shadow">
-                  <div className="relative h-[140px] lg:h-[170px] overflow-hidden">
-                    <img src={event.image} alt={event.title} className="object-cover w-full h-full" />
-                    <div className="absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-black/40 to-transparent"></div>
-                  </div>
-                  <div className="px-4 py-4">
-                    <p className="text-[10px] font-normal text-zinc-400 uppercase tracking-wider mb-1.5">{event.date} · {event.location}</p>
-                    <h3 className="font-heading font-normal text-[16px] text-zinc-900 leading-snug mb-3">{event.title}</h3>
-                    <div className="flex items-center justify-between">
-                      <p className="text-[15px] font-normal text-zinc-900">₦{event.price.toLocaleString()}</p>
-                      <span className="h-7 px-3 rounded-md text-[11px] font-normal text-white bg-brand-accent inline-flex items-center">Buy</span>
-                    </div>
-                  </div>
+                <Link key={event.id} to={`/events/${event.id}`} className="shrink-0 w-[260px] lg:w-auto">
+                  <EventCard event={event} />
                 </Link>
               ))}
             </div>
@@ -576,18 +576,8 @@ const BitbandyHomepage = () => {
               <p className="text-[12px] text-zinc-400 -mt-2 mb-4">Port Harcourt · 4 nearby</p>
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
                 {eventsData.slice(0, 4).map((event) => (
-                  <Link key={event.id} to={`/events/${event.id}`} className="bg-white rounded-xl overflow-hidden block hover:shadow-lg transition-shadow">
-                    <div className="relative h-[100px] lg:h-[150px] overflow-hidden">
-                      <img src={event.image} alt={event.title} className="object-cover w-full h-full" />
-                      <div className="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-black/40 to-transparent"></div>
-                    </div>
-                    <div className="px-3 py-2.5">
-                      <h3 className="font-heading font-normal text-[15px] text-zinc-900 leading-snug mb-1">{event.title}</h3>
-                      <p className="text-[10px] text-zinc-400 mb-2 flex items-center gap-1">
-                        <LocationIcon /> {event.date} · Nearby
-                      </p>
-                      <p className="text-[13px] font-normal text-zinc-900">₦{event.price.toLocaleString()}</p>
-                    </div>
+                  <Link key={event.id} to={`/events/${event.id}`} className="w-full">
+                    <EventCard event={event} />
                   </Link>
                 ))}
               </div>
