@@ -177,24 +177,30 @@ const trendingEvents = [
 const filterOptions = ['Trending', 'Corporate', 'Concerts'];
 
 const TrendingSection = () => {
-  const [activeFilter, setActiveFilter] = useState('Trending');
   const displayedEvents = trendingEvents;
   return (
-    <section className="py-8 bg-sky-50/30">
+    <section className="py-8">
       <div className="lg:max-w-[1280px] lg:mx-auto lg:px-8">
-        <div className="px-5 mb-4 lg:px-0">
-          <h2 className="font-heading font-normal text-[18px] tracking-wide text-zinc-900">TRENDING</h2>
+        <div className="px-5 lg:px-0 mb-5">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="mt-1 flex h-9 w-9 items-center justify-center rounded-xl bg-purple-50 text-purple-700">
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
+                  <path fill="none" d="M0 0h24v24H0z"></path>
+                  <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z"></path>
+                </svg>
+              </div>
+              <div>
+                <h2 className="font-heading font-bold text-xl text-zinc-900">TRENDING</h2>
+                <p className="text-zinc-500 text-xs">Top events everyone's talking about</p>
+              </div>
+            </div>
+            <Link to="/discover" className="bg-purple-100 text-purple-700 font-semibold px-3 py-1.5 rounded-md hover:bg-purple-200 transition-colors text-xs">Browse all</Link>
+          </div>
         </div>
-        <div className="flex gap-2 overflow-x-auto scrollbar-hide px-5 mb-4 pb-0.5 lg:px-0 lg:flex-wrap lg:overflow-visible lg:pb-0">
-          {filterOptions.map((filter) => (
-            <button key={filter} onClick={() => setActiveFilter(filter)} className={`shrink-0 h-8 px-3.5 rounded-lg text-[12px] font-normal transition-all duration-150 ${activeFilter === filter ? 'bg-brand-accent text-white' : 'bg-zinc-100 text-zinc-500'}`}>
-              {filter}
-            </button>
-          ))}
-        </div>
-        <div className="flex gap-3 overflow-x-auto scrollbar-hide pl-5 pr-5 pb-1 lg:grid lg:grid-cols-4 lg:overflow-visible lg:pl-0 lg:pr-0 lg:pb-0 lg:mt-2">
+        <div className="flex gap-4 overflow-x-auto scrollbar-hide pl-5 pr-5 pb-1 lg:grid lg:grid-cols-4 lg:overflow-visible">
           {displayedEvents.map((event) => (
-            <Link key={event.id} className="shrink-0 w-[260px] lg:w-auto" to={`/events/${event.id}`}>
+            <Link key={event.id} to={`/events/${event.id}`} className="shrink-0 w-[260px] lg:w-auto">
               <EventCard event={event} />
             </Link>
           ))}
@@ -576,36 +582,30 @@ const BitbandyHomepage = () => {
           </div>
         </section>
 
-        {/* Category Filters */}
-        <div className="mt-10 mb-8">
-          <div className="lg:max-w-[1280px] lg:mx-auto lg:px-8">
-            <div className="flex gap-2 overflow-x-auto scrollbar-hide px-5 pb-0.5 lg:px-0 lg:flex-wrap lg:overflow-visible">
-              {categories.map((cat) => (
-                <button
-                  key={cat.id}
-                  onClick={() => setActiveCategory(cat.id)}
-                  className={`shrink-0 flex items-center gap-1.5 h-10 px-4 rounded-xl text-[12px] font-normal transition-all duration-150 ${activeCategory === cat.id ? 'bg-brand-accent text-white' : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200'}`}
-                >
-                  {cat.icon}
-                  <span>{cat.label}</span>
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
+
 
         {/* Trending Section */}
         <TrendingSection />
 
         {/* For You Section */}
-        <section className="py-8 bg-purple-50/40">
+        <section className="py-8">
           <div className="lg:max-w-[1280px] lg:mx-auto lg:px-8">
-            <div className="flex items-center justify-between px-5 lg:px-0 mb-5">
-              <div className="flex items-center gap-2.5">
-                <div className="w-[3px] h-[18px] bg-brand-accent rounded-full"></div>
-                <h2 className="font-heading font-normal text-[18px] tracking-wide text-zinc-900">FOR YOU</h2>
+            <div className="px-5 lg:px-0 mb-5">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="mt-1 flex h-9 w-9 items-center justify-center rounded-xl bg-purple-50 text-purple-700">
+                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
+                      <path fill="none" d="M0 0h24v24H0z"></path>
+                      <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <h2 className="font-heading font-bold text-xl text-zinc-900">FOR YOU</h2>
+                    <p className="text-zinc-500 text-xs">Events we think you'll love</p>
+                  </div>
+                </div>
+                <Link to="/discover" className="bg-purple-100 text-purple-700 font-semibold px-3 py-1.5 rounded-md hover:bg-purple-200 transition-colors text-xs">Browse all</Link>
               </div>
-              <Link to="/discover" className="text-[12px] font-normal text-brand-accent">Browse all <ArrowRightIcon /></Link>
             </div>
             <div className="flex gap-4 overflow-x-auto scrollbar-hide pl-5 pr-5 pb-1 lg:grid lg:grid-cols-4 lg:overflow-visible">
               {filteredEvents.map((event) => (
@@ -618,21 +618,31 @@ const BitbandyHomepage = () => {
         </section>
 
         {/* Near You Section */}
-        <section className="mt-10 px-3 lg:px-0">
+        <section className="py-8">
           <div className="lg:max-w-[1280px] lg:mx-auto lg:px-8">
-            <div className="px-5 py-4 rounded-3xl bg-blue-50/30 ring-1 ring-blue-100/70 lg:px-8 lg:py-8">
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="font-heading font-normal text-[16px] lg:text-[18px] text-zinc-900 tracking-wide">NEAR YOU</h2>
-                <Link to="/discover" className="text-[12px] font-normal text-zinc-400">See all</Link>
+            <div className="px-5 lg:px-0 mb-5">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="mt-1 flex h-9 w-9 items-center justify-center rounded-xl bg-purple-50 text-purple-700">
+                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
+                      <path fill="none" d="M0 0h24v24H0z"></path>
+                      <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <h2 className="font-heading font-bold text-xl text-zinc-900">NEAR YOU</h2>
+                    <p className="text-zinc-500 text-xs">Port Harcourt · 4 nearby events</p>
+                  </div>
+                </div>
+                <Link to="/discover" className="bg-purple-100 text-purple-700 font-semibold px-3 py-1.5 rounded-md hover:bg-purple-200 transition-colors text-xs">Browse all</Link>
               </div>
-              <p className="text-[12px] text-zinc-400 -mt-2 mb-4">Port Harcourt · 4 nearby</p>
-              <div className="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-4">
-                {eventsData.slice(0, 4).map((event) => (
-                  <Link key={event.id} to={`/events/${event.id}`} className="w-full">
-                    <EventCard event={event} />
-                  </Link>
-                ))}
-              </div>
+            </div>
+            <div className="flex gap-4 overflow-x-auto scrollbar-hide pl-5 pr-5 pb-1 lg:grid lg:grid-cols-4 lg:overflow-visible">
+              {eventsData.slice(0, 4).map((event) => (
+                <Link key={event.id} to={`/events/${event.id}`} className="shrink-0 w-[260px] lg:w-auto">
+                  <EventCard event={event} />
+                </Link>
+              ))}
             </div>
           </div>
         </section>
