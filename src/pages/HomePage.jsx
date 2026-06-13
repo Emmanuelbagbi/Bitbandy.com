@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import MobileMenu from '../components/MobileMenu';
 import EventCard from '../components/EventCard';
+import { Calendar, Clock } from 'lucide-react';
+import { IoPerson } from "react-icons/io5";
+import heroBackground from '../assets/Hero-background-img.png';
 // import { Herobanner } from '../assets/banner.png'
 
 // Icons
@@ -338,9 +341,9 @@ const FreeLowCostSection = () => {
 };
 
 const heroSlides = [
-  { id: 1, title: 'Rev Battle 1.0', category: 'education', date: 'Mon, Jun 29', venue: 'Landmark Event Centre, Lagos', price: 45000, image: eventsData[0].image },
-  { id: 2, title: 'Wiz Summer Fiesta 2026', category: 'education', date: 'Mon, Jun 29', venue: 'Landmark Event Centre, Lagos', price: 45000, image: eventsData[2].image },
-  { id: 3, title: 'Jeriq Summer Fest', category: 'education', date: 'Wed, Jul 22', venue: 'Port Harcourt', price: 50000, image: eventsData[3].image }
+  { id: 1, title: 'Rev Battle 1.0', category: 'Education', date: 'Mon, Jun 29', venue: 'Landmark Event Centre, Lagos', price: 45000, image: eventsData[0].image, organizer: eventsData[0].organizer, countdown: eventsData[0].countdown },
+  { id: 2, title: 'Wiz Summer Fiesta 2026', category: 'Corporate', date: 'Mon, Jun 29', venue: 'Landmark Event Centre, Lagos', price: 45000, image: eventsData[2].image, organizer: eventsData[2].organizer, countdown: eventsData[2].countdown },
+  { id: 3, title: 'Jeriq Summer Fest', category: 'Music', date: 'Wed, Jul 22', venue: 'Port Harcourt', price: 50000, image: eventsData[3].image, organizer: eventsData[3].organizer, countdown: eventsData[3].countdown }
 ];
 
 const categories = [
@@ -409,9 +412,9 @@ const BitbandyHomepage = () => {
           </Link>
 
           <nav className="hidden lg:flex items-center gap-7 shrink-0">
-            <Link to="/" className="text-[14px] font-normal text-purple-600">Home</Link>
-            <Link to="/discover" className="text-[14px] font-normal text-zinc-400 hover:text-zinc-700">Discover</Link>
-            <Link to="/for-organizers" className="text-[14px] font-normal text-zinc-400 hover:text-zinc-700">For Organizers</Link>
+            <Link to="/events" className="text-[14px] font-normal text-purple-600">Events</Link>
+            <Link to="/about" className="text-[14px] font-normal text-zinc-400 hover:text-zinc-700">About</Link>
+            <Link to="/contact-us" className="text-[14px] font-normal text-zinc-400 hover:text-zinc-700">Contact</Link>
           </nav>
 
           <form className="hidden lg:flex flex-1 max-w-[380px] items-center gap-2.5 h-10 rounded-lg px-3 bg-zinc-100 ml-8">
@@ -452,26 +455,25 @@ const BitbandyHomepage = () => {
         {/* Hero Section */}
         <section className="px-5 pt-5 lg:px-0">
           <div className="lg:max-w-[1280px] lg:mx-auto lg:px-8 lg:pt-8">
-            <div className="relative rounded-3xl bg-gradient-to-br from-purple-50 to-orange-50 ring-1 ring-purple-100 overflow-hidden">
-              <div className="relative px-6 pt-8 pb-8 lg:grid lg:grid-cols-2 lg:gap-6 lg:items-center lg:px-12 lg:pt-12 lg:pb-12">
-                <div>
-                  <p className="text-[10px] font-normal text-zinc-500 uppercase tracking-[0.2em] mb-4 lg:text-[11px]">Lagos · Port Harcourt · Abuja · Nigeria</p>
-                  <h1 className="font-heading font-normal text-[30px] leading-[1.05] tracking-wide text-zinc-900 mb-4 lg:text-[60px] lg:mb-6">
+            <div 
+              className="relative rounded-3xl overflow-hidden bg-cover bg-center bg-no-repeat" 
+              style={{ 
+                backgroundImage: `url(${heroBackground})`,
+                backgroundColor: '#f3e8ff'
+              }}
+            >
+              <div className="relative px-6 pt-8 pb-8 lg:px-12 lg:pt-12 lg:pb-12">
+                <div className="relative z-10">
+                  <p className="text-[10px] font-normal text-zinc-600 uppercase tracking-[0.2em] mb-4 lg:text-[11px]">Lagos · Port Harcourt · Abuja · Nigeria</p>
+                  <h1 className="font-heading font-bold text-[40px] leading-[1.1] tracking-tight text-zinc-900 mb-4 lg:text-[64px] lg:mb-6">
                     DISCOVER<br />EVENTS<br />AROUND YOU<br />WITH <span className="text-brand-accent">Bitbandy!</span>
                   </h1>
-                  <p className="text-[13px] text-zinc-500 leading-relaxed max-w-[270px] mb-5 lg:text-[15px] lg:max-w-[360px]">Music, comedy, corporate, sports, everything happening near you, all in one place.</p>
-                  <div className="flex items-center gap-3">
-                    <Link to="/discover" className="bg-brand-accent text-white font-normal text-[13px] px-5 py-2.5 rounded-xl whitespace-nowrap lg:text-[15px] lg:px-7 lg:py-3 hover:bg-brand-accent-hover transition-colors">Browse Events</Link>
-                    <Link to="/host" className="text-[13px] font-normal text-zinc-500 hover:text-zinc-700 transition-colors">Host an event <ArrowRightIcon /></Link>
+                  <p className="text-[14px] text-zinc-700 leading-relaxed max-w-[320px] mb-6 lg:text-[16px] lg:max-w-[380px]">Music, comedy, corporate, sports, everything happening near you, all in one place.</p>
+                  <div className="flex items-center gap-4">
+                    <Link to="/discover" className="bg-brand-accent text-white font-semibold text-[14px] px-7 py-3.5 rounded-xl whitespace-nowrap lg:text-[15px] hover:bg-brand-accent-hover transition-colors">Browse Events</Link>
+                    <Link to="/host" className="text-[14px] font-semibold text-zinc-800 hover:text-zinc-900 transition-colors flex items-center gap-1">Host an event <ArrowRightIcon /></Link>
                   </div>
                 </div>
-                <div className="hidden lg:block">
-                  <img src='https://twintix.vercel.app/_next/image?url=%2Fillustrations%2Fhero.png&w=828&q=75' alt="Event discovery banner" className="w-full h-auto drop-shadow-2xl" />
-                </div>
-              </div>
-              {/* Mobile banner */}
-              <div className="lg:hidden px-6 pb-6">
-                <img src='https://twintix.vercel.app/_next/image?url=%2Fillustrations%2Fhero.png&w=828&q=75' alt="Event discovery banner" className="w-full h-auto drop-shadow-xl" />
               </div>
             </div>
           </div>
@@ -488,11 +490,40 @@ const BitbandyHomepage = () => {
                     className={`hero-slide absolute inset-0 transition-opacity duration-500 ${activeSlide === idx ? 'opacity-100' : 'opacity-0'}`}
                   >
                     <img src={slide.image} alt={slide.title} className="object-cover w-full h-full" />
-                    <div className="absolute top-3 left-3 z-10">
-                      <span className="inline-block bg-black/50 backdrop-blur-sm text-white text-[10px] font-normal uppercase tracking-widest px-2.5 py-1 rounded-md">{slide.category}</span>
+                    {/* Header with date and countdown */}
+                    <div className="absolute top-0 left-0 right-0 z-10 bg-zinc-900/90 backdrop-blur-sm px-4 py-2 flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <div className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 w-7 h-7">
+                          <Calendar size={13} color="white" />
+                        </div>
+                        <span className="text-white text-xs font-normal">{slide.date}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 w-6 h-6">
+                          <Clock size={11} color="white" />
+                        </div>
+                        <span className="text-zinc-200 text-xs font-normal whitespace-nowrap">{slide.countdown}</span>
+                      </div>
+                    </div>
+                    {/* Gradient overlay */}
+                    <div className="absolute left-0 right-0 bottom-0 h-24 bg-gradient-to-t from-black/75 to-transparent"></div>
+                    {/* Category badge */}
+                    <div className="absolute top-14 left-3 z-10">
+                      <div className="inline-flex items-center gap-1.5 bg-black/75 backdrop-blur-md text-white text-[10px] font-normal uppercase tracking-widest px-3 py-1.5 rounded-full border border-white/10">
+                        <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: '#9139f6' }}></span>
+                        <span>{slide.category}</span>
+                      </div>
+                    </div>
+                    {/* Organizer info */}
+                    <div className="absolute bottom-3 left-3 z-10 flex items-center gap-2">
+                      <div className="inline-flex items-center justify-center min-w-8 min-h-8 rounded-full bg-black/80 border border-white/15">
+                        <IoPerson size={14} color="white" />
+                      </div>
+                      <span className="text-white text-sm font-normal">{slide.organizer}</span>
                     </div>
                   </div>
                 ))}
+                {/* Progress bar */}
                 <div className="absolute bottom-0 inset-x-0 h-[3px] bg-white/10 z-10">
                   <div className="h-full bg-brand-accent transition-all duration-500" style={{ width: `${((activeSlide + 1) / heroSlides.length) * 100}%` }}></div>
                 </div>

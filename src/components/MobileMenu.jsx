@@ -69,12 +69,12 @@ const MobileMenu = ({ isOpen, onClose }) => {
             HOME
           </Link>
           <Link
-            to="/discover"
+            to="/Events"
             className="font-heading text-[34px] leading-[1.15] tracking-wide text-left py-2 text-zinc-900"
             style={{ animation: '0.4s ease-out 60ms 1 normal both running nav-item-in' }}
             onClick={onClose}
           >
-            DISCOVER
+            Events
           </Link>
           <Link
             to="/tickets"
@@ -104,12 +104,12 @@ const MobileMenu = ({ isOpen, onClose }) => {
             ABOUT
           </Link>
           <Link
-            to="/support"
+            to="/how-it-works"
             className="font-heading text-[34px] leading-[1.15] tracking-wide text-left py-2 text-zinc-900"
             style={{ animation: '0.4s ease-out 300ms 1 normal both running nav-item-in' }}
             onClick={onClose}
           >
-            SUPPORT
+            HOW IT WORKS
           </Link>
         </nav>
 
