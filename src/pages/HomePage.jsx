@@ -574,7 +574,7 @@ const BitbandyHomepage = () => {
                 <Link to="/discover" className="text-[12px] font-normal text-zinc-400">See all</Link>
               </div>
               <p className="text-[12px] text-zinc-400 -mt-2 mb-4">Port Harcourt · 4 nearby</p>
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
+              <div className="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-4">
                 {eventsData.slice(0, 4).map((event) => (
                   <Link key={event.id} to={`/events/${event.id}`} className="w-full">
                     <EventCard event={event} />
