@@ -5,6 +5,8 @@ import { IoPerson } from "react-icons/io5";
 import { FaLocationDot } from "react-icons/fa6";
 
 const EventCard = ({ event, isPast }) => {
+  const isFree = event.price === 'FREE';
+  
   return (
     <div className="event-card-container">
       <div className="event-card-corner-bottom-left"></div>
@@ -32,6 +34,11 @@ const EventCard = ({ event, isPast }) => {
           <span className="type-badge-dot"></span>
           <span>{event.category}</span>
         </div>
+        {isFree && (
+          <div className="absolute top-0.5 right-0.5 inline-flex items-center gap-1 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full">
+            FREE
+          </div>
+        )}
         <div className="event-card-organizer-info">
           <span className="organizer-icon-circle">
             <IoPerson size={14} />

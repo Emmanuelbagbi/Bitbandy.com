@@ -59,30 +59,39 @@ const eventsData = [
 const freeLowCostEvents = [
   {
     id: 'cmqb8gw520001la04azxnfyi5',
-    title: 'ByteTech Summit',
-    date: 'Thu, Jun 25',
-    venue: 'Autograph Event Center',
+    title: 'Urban Plant Care 101',
+    date: 'Sat, Jun 21',
+    venue: 'Co-Create Hub',
+    location: 'Lagos',
     price: 'FREE',
-    category: 'fashion',
-    image: 'https://huhnbrdgiwntdaayfakl.supabase.co/storage/v1/object/public/event-covers/cmqarjccw0002l7055mcgb49j/drafts/7682124e-a1b5-42a6-b739-7b30e6617867.png',
+    category: 'Lifestyle',
+    organizer: 'Green Thumb Events',
+    countdown: '8 days',
+    image: 'https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?w=600&h=400&fit=crop',
   },
   {
     id: 'cmqb5c8os0001i8047mgm4cyr',
-    title: 'Rev Battle 1.0',
-    date: 'Sun, Jun 14',
-    venue: 'Elekahia Stadium',
-    price: '₦5,000',
-    category: 'education',
-    image: 'https://huhnbrdgiwntdaayfakl.supabase.co/storage/v1/object/public/event-covers/cmqarjccw0002l7055mcgb49j/drafts/6489fae1-ec46-4010-9ccf-bb396922929f.jpg',
+    title: 'Sunset Film Screening',
+    date: 'Fri, Jun 27',
+    venue: 'Freedom Park',
+    location: 'Abuja',
+    price: 'FREE',
+    category: 'Entertainment',
+    organizer: 'Lagos Film Club',
+    countdown: '14 days',
+    image: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=600&h=400&fit=crop',
   },
   {
     id: 'cmqb9xyz00001abcdefghijk',
-    title: 'Sunset Film Screening',
-    date: 'Fri, Jun 27',
-    venue: 'Freedom Park, Lagos',
-    price: 'FREE',
-    category: 'entertainment',
-    image: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=600&h=400&fit=crop',
+    title: 'Yoga in the Park',
+    date: 'Sun, Jun 22',
+    venue: 'Port Harcourt Gardens',
+    location: 'Port Harcourt',
+    price: '₦1,000',
+    category: 'Health',
+    organizer: 'Yoga Flow',
+    countdown: '9 days',
+    image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&h=400&fit=crop',
   },
 ];
 
@@ -227,26 +236,14 @@ const TrendingSection = () => {
 const FreeLowCostSection = () => {
   const swiperRef = React.useRef(null);
 
-  const handleNext = () => {
-    if (swiperRef.current) {
-      swiperRef.current.swiper.slideNext();
-    }
-  };
-
-  const handlePrev = () => {
-    if (swiperRef.current) {
-      swiperRef.current.swiper.slidePrev();
-    }
-  };
-
   return (
     <section className="py-8 bg-purple-50/40">
       <div className="lg:max-w-[1280px] lg:mx-auto lg:px-8">
         {/* Header */}
-        <div className="flex items-center justify-between gap-3 px-5 lg:px-0 mb-6">
-          <div className="flex items-center gap-3 min-w-0">
-            <div className="shrink-0 flex h-9 w-9 items-center justify-center rounded-xl bg-purple-100 text-purple-700">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <div className="flex items-center justify-between gap-3 px-5 lg:px-0 mb-8">
+          <div className="flex items-center gap-4 min-w-0">
+            <div className="shrink-0 flex h-14 w-14 items-center justify-center rounded-2xl bg-purple-100 text-purple-700">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M2 9V5a2 2 0 0 1 2-2h3l2 2h6l2-2h3a2 2 0 0 1 2 2v4"></path>
                 <rect x="2" y="9" width="20" height="10" rx="2"></rect>
                 <path d="M6 14h.01"></path>
@@ -254,105 +251,115 @@ const FreeLowCostSection = () => {
               </svg>
             </div>
             <div className="min-w-0">
-              <h2 className="font-heading font-bold text-lg text-zinc-900 truncate">Budget Friendly Picks</h2>
-              <p className="text-zinc-500 text-xs">Quality events that won't cost much.</p>
+              <h2 className="font-heading font-bold text-xl text-gray-900">Budget Friendly Picks</h2>
+              <p className="text-gray-500 text-sm">Handpicked events that are fun and easy on your wallet.</p>
             </div>
           </div>
-          <div className="flex items-center gap-2 shrink-0">
-            <button onClick={handlePrev} className="flex items-center justify-center w-9 h-9 rounded-full bg-purple-100 text-purple-700 hover:bg-purple-200 transition-colors">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="m15 18-6-6 6-6" />
-              </svg>
-            </button>
-            <button onClick={handleNext} className="flex items-center justify-center w-9 h-9 rounded-full bg-purple-100 text-purple-700 hover:bg-purple-200 transition-colors">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="m9 18 6-6-6-6" />
-              </svg>
-            </button>
-          </div>
+          <Link to="/discover?category=free" className="hidden lg:flex items-center gap-2 text-purple-600 font-semibold text-sm hover:text-purple-700 transition-colors shrink-0">
+            See more free events
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M5 12h14" />
+              <path d="m12 5 7 7-7 7" />
+            </svg>
+          </Link>
         </div>
 
         {/* Event Cards */}
-        <div className="px-5 lg:px-0 pb-2">
+        <div className="px-5 lg:px-0 pb-4">
           <Swiper
             ref={swiperRef}
             modules={[Navigation, Pagination, A11y]}
             spaceBetween={16}
             slidesPerView={1}
-            pagination={{ clickable: true }}
+            pagination={{ 
+              clickable: true,
+              el: '.custom-swiper-pagination',
+              bulletClass: 'swiper-pagination-bullet w-2 h-2 rounded-full bg-gray-300',
+              bulletActiveClass: 'swiper-pagination-bullet-active w-8 h-2 rounded-full bg-purple-600',
+             }}
             breakpoints={{
               640: {
-                slidesPerView: 1,
-                spaceBetween: 20,
+                slidesPerView: 2,
+                spaceBetween: 16,
               },
               768: {
-                slidesPerView: 2,
-                spaceBetween: 20,
+                slidesPerView: 3,
+                spaceBetween: 16,
               },
               1024: {
-                slidesPerView: 2,
-                spaceBetween: 24,
+                slidesPerView: 3,
+                spaceBetween: 20,
+              },
+              1280: {
+                slidesPerView: 4,
+                spaceBetween: 20,
               },
             }}
             className="w-full"
           >
             {freeLowCostEvents.map((event) => (
               <SwiperSlide key={event.id}>
-                <Link
-                  to={`/events/${event.id}`}
-                  className="bg-white rounded-2xl p-3 shadow-lg flex gap-3 items-center hover:shadow-xl transition-shadow lg:p-4 lg:gap-4"
-                >
-                  <div className="relative w-24 h-24 rounded-xl overflow-hidden shrink-0 lg:w-28 lg:h-28">
-                    <img
-                      alt={event.title}
-                      loading="lazy"
-                      className="object-cover object-center w-full h-full"
-                      src={event.image}
-                    />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    {event.price === "FREE" && (
-                      <span className="inline-block px-2 py-1 rounded-lg bg-green-100 text-green-700 text-xs font-semibold mb-1.5">
-                        FREE
-                      </span>
-                    )}
-                    <h3 className="font-heading font-bold text-lg text-zinc-900 mb-1.5 line-clamp-2 lg:text-xl">
-                      {event.title}
-                    </h3>
-                    <div className="flex items-center gap-1.5 text-zinc-500 text-xs mb-1.5 lg:text-sm lg:gap-2">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lg:w-4 lg:h-4">
-                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                        <line x1="16" y1="2" x2="16" y2="6"></line>
-                        <line x1="8" y1="2" x2="8" y2="6"></line>
-                        <line x1="3" y1="10" x2="21" y2="10"></line>
-                      </svg>
-                      {event.date}
+                <Link to={`/events/${event.id}`} className="block">
+                  <div className="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
+                    <div className="relative">
+                      <img 
+                        src={event.image} 
+                        alt={event.title} 
+                        className="w-full h-40 object-cover"
+                      />
+                      {event.price === 'FREE' && (
+                        <div className="absolute top-3 left-3 bg-green-100 text-green-700 px-2.5 py-1 rounded-lg font-bold text-xs">
+                          FREE
+                        </div>
+                      )}
                     </div>
-                    <div className="flex items-center gap-1.5 text-zinc-500 text-xs mb-2 lg:text-sm lg:gap-2 lg:mb-3">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                        <circle cx="12" cy="10" r="3"></circle>
-                      </svg>
-                      <span className="truncate">{event.venue}</span>
+                    <div className="p-4">
+                      <div className="flex items-center gap-2 mb-2">
+                        <div className="w-7 h-7 rounded-lg bg-purple-100 flex items-center justify-center text-purple-600">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5V6A2.5 2.5 0 0 1 6.5 2H20v0"></path>
+                          </svg>
+                        </div>
+                        <span className="text-purple-600 font-semibold text-xs capitalize">{event.category}</span>
+                      </div>
+                      <h3 className="font-heading font-bold text-lg text-gray-900 mb-3">{event.title}</h3>
+                      <div className="space-y-2 mb-4">
+                        <div className="flex items-center gap-2 text-gray-500 text-xs">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-purple-500">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                          </svg>
+                          <span className="font-medium">{event.date} • 10:00 AM</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-gray-500 text-xs">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-purple-500">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                          </svg>
+                          <span className="font-medium">{event.location}</span>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2 text-purple-600 font-semibold text-sm">
+                        <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="m9 18 6-6-6-6" />
+                          </svg>
+                        </div>
+                        View details
+                      </div>
                     </div>
-                    <span className="inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-green-100 text-green-700 text-xs font-semibold lg:px-3 lg:py-1">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lg:w-4 lg:h-4">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                      </svg>
-                      {event.category}
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-center w-9 h-9 rounded-full bg-purple-100 shrink-0 lg:w-10 lg:h-10">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9139f6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lg:w-5 lg:h-5">
-                      <path d="M5 12h14" />
-                      <path d="m12 5 7 7-7 7" />
-                    </svg>
                   </div>
                 </Link>
               </SwiperSlide>
             ))}
           </Swiper>
         </div>
+        
+        {/* Pagination */}
+        <div className="custom-swiper-pagination flex justify-center gap-2 mt-4"></div>
       </div>
     </section>
   );

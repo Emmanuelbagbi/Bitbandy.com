@@ -1,4 +1,5 @@
 import { Link, useParams } from 'react-router-dom';
+import EventCard from '../components/EventCard';
 
 function EventDetailsPage() {
   const { id } = useParams();
@@ -22,6 +23,45 @@ function EventDetailsPage() {
     ticketType: 'General',
     image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1200&h=600&fit=crop'
   };
+
+  const relatedEvents = [
+    { 
+      id: '1', 
+      title: 'Wiz Summer Fiesta 2026', 
+      category: 'education', 
+      date: 'Mon, Jun 29', 
+      venue: 'Landmark Event Centre', 
+      location: 'Lagos', 
+      price: 45000, 
+      organizer: 'Wiz Events', 
+      countdown: '17 days', 
+      image: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=600&h=400&fit=crop' 
+    },
+    { 
+      id: '2', 
+      title: 'Jeriq Summer Fest', 
+      category: 'music', 
+      date: 'Wed, Jul 22', 
+      venue: 'Port Harcourt', 
+      location: 'Port Harcourt', 
+      price: 50000, 
+      organizer: 'Jeriq Music', 
+      countdown: '39 days', 
+      image: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=600&h=400&fit=crop' 
+    },
+    { 
+      id: '3', 
+      title: 'ByteTech Summit', 
+      category: 'fashion', 
+      date: 'Thu, Jun 25', 
+      venue: 'Autograph Event Center', 
+      location: 'Port Harcourt', 
+      price: 'FREE', 
+      organizer: 'ByteTech', 
+      countdown: '12 days', 
+      image: 'https://huhnbrdgiwntdaayfakl.supabase.co/storage/v1/object/public/event-covers/cmqarjccw0002l7055mcgb49j/drafts/7682124e-a1b5-42a6-b739-7b30e6617867.png' 
+    },
+  ];
 
   return (
     <div className="min-h-screen bg-white">
@@ -59,7 +99,7 @@ function EventDetailsPage() {
                 </span>
               </div>
 
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900">{event.title}</h1>
+              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 font-heading">{event.title}</h1>
 
               <div className="space-y-3 text-lg text-gray-700">
                 <p className="flex items-center gap-3">
@@ -70,7 +110,7 @@ function EventDetailsPage() {
                 </p>
                 <p className="flex items-center gap-3">
                   <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0a9 9 0 0118 0z" />
                   </svg>
                   {event.time}
                 </p>
@@ -113,7 +153,7 @@ function EventDetailsPage() {
 
               {/* About */}
               <div className="pt-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">About</h2>
+                <h2 className="text-2xl font-bold text-gray-900 font-heading mb-4">About</h2>
                 <p className="text-gray-700 leading-relaxed mb-6">{event.about}</p>
                 <div className="flex flex-wrap gap-2">
                   <span className="text-purple-600 font-medium">#{event.category}</span>
@@ -124,7 +164,7 @@ function EventDetailsPage() {
 
               {/* Venue */}
               <div className="pt-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">Venue</h2>
+                <h2 className="text-2xl font-bold text-gray-900 font-heading mb-4">Venue</h2>
                 <div className="space-y-2">
                   <p className="font-semibold text-gray-900 text-lg">Elekahia Stadium</p>
                   <p className="text-gray-600">{event.location}</p>
@@ -174,7 +214,7 @@ function EventDetailsPage() {
 
               {/* Event Summary Card */}
               <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
-                <h2 className="text-xl font-bold text-gray-900 mb-6">{event.title}</h2>
+                <h2 className="text-xl font-bold text-gray-900 font-heading mb-6">{event.title}</h2>
                 <div className="space-y-4 text-gray-700 mb-6">
                   <p className="flex items-center gap-3">
                     <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -184,7 +224,7 @@ function EventDetailsPage() {
                   </p>
                   <p className="flex items-center gap-3">
                     <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0a9 9 0 0118 0z" />
                     </svg>
                     {event.time}
                   </p>
@@ -209,6 +249,18 @@ function EventDetailsPage() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* You May Also Like */}
+        <div className="mt-16">
+          <h2 className="text-2xl font-bold text-gray-900 font-heading mb-8">You May Also Like</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {relatedEvents.map((relatedEvent) => (
+              <Link key={relatedEvent.id} to={`/events/${relatedEvent.id}`} className="block">
+                <EventCard event={relatedEvent} />
+              </Link>
+            ))}
           </div>
         </div>
       </div>
