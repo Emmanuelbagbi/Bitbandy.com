@@ -5,6 +5,11 @@ import EventCard from '../components/EventCard';
 import { Calendar, Clock } from 'lucide-react';
 import { IoPerson } from "react-icons/io5";
 import heroBackground from '../assets/Hero-background-img.png';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import { Navigation, Pagination, A11y } from 'swiper/modules';
 // import { Herobanner } from '../assets/banner.png'
 
 // Icons
@@ -69,6 +74,15 @@ const freeLowCostEvents = [
     price: '₦5,000',
     category: 'education',
     image: 'https://huhnbrdgiwntdaayfakl.supabase.co/storage/v1/object/public/event-covers/cmqarjccw0002l7055mcgb49j/drafts/6489fae1-ec46-4010-9ccf-bb396922929f.jpg',
+  },
+  {
+    id: 'cmqb9xyz00001abcdefghijk',
+    title: 'Sunset Film Screening',
+    date: 'Fri, Jun 27',
+    venue: 'Freedom Park, Lagos',
+    price: 'FREE',
+    category: 'entertainment',
+    image: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=600&h=400&fit=crop',
   },
 ];
 
@@ -182,20 +196,20 @@ const TrendingSection = () => {
     <section className="py-8">
       <div className="lg:max-w-[1280px] lg:mx-auto lg:px-8">
         <div className="px-5 lg:px-0 mb-5">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="mt-1 flex h-9 w-9 items-center justify-center rounded-xl bg-purple-50 text-purple-700">
-                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
+          <div className="flex items-center justify-between gap-3">
+            <div className="flex items-center gap-3 min-w-0">
+              <div className="shrink-0 flex h-9 w-9 items-center justify-center rounded-xl bg-purple-50 text-purple-700">
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="18" width="18" xmlns="http://www.w3.org/2000/svg">
                   <path fill="none" d="M0 0h24v24H0z"></path>
                   <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z"></path>
                 </svg>
               </div>
-              <div>
-                <h2 className="font-heading font-bold text-xl text-zinc-900">TRENDING</h2>
+              <div className="min-w-0">
+                <h2 className="font-heading font-bold text-lg text-zinc-900">TRENDING</h2>
                 <p className="text-zinc-500 text-xs">Top events everyone's talking about</p>
               </div>
             </div>
-            <Link to="/discover" className="bg-purple-100 text-purple-700 font-semibold px-3 py-1.5 rounded-md hover:bg-purple-200 transition-colors text-xs">Browse all</Link>
+            <Link to="/discover" className="shrink-0 bg-purple-100 text-purple-700 font-semibold px-3 py-1.5 rounded-md hover:bg-purple-200 transition-colors text-xs whitespace-nowrap">Browse all</Link>
           </div>
         </div>
         <div className="flex gap-4 overflow-x-auto scrollbar-hide pl-5 pr-5 pb-1 lg:grid lg:grid-cols-4 lg:overflow-visible">
@@ -211,145 +225,133 @@ const TrendingSection = () => {
 };
 
 const FreeLowCostSection = () => {
+  const swiperRef = React.useRef(null);
+
+  const handleNext = () => {
+    if (swiperRef.current) {
+      swiperRef.current.swiper.slideNext();
+    }
+  };
+
+  const handlePrev = () => {
+    if (swiperRef.current) {
+      swiperRef.current.swiper.slidePrev();
+    }
+  };
+
   return (
-    <section className="py-8 bg-amber-50/35">
+    <section className="py-8 bg-purple-50/40">
       <div className="lg:max-w-[1280px] lg:mx-auto lg:px-8">
         {/* Header */}
-        <div className="flex items-center justify-between px-5 mb-1 lg:px-0">
-          <h2 className="font-heading font-normal text-[18px] tracking-wide text-zinc-900">
-            FREE &amp; LOW COST
-          </h2>
-          <Link
-            className="text-[12px] font-normal text-brand-accent card-press"
-            to="/discover?category=free"
+        <div className="flex items-center justify-between gap-3 px-5 lg:px-0 mb-6">
+          <div className="flex items-center gap-3 min-w-0">
+            <div className="shrink-0 flex h-9 w-9 items-center justify-center rounded-xl bg-purple-100 text-purple-700">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M2 9V5a2 2 0 0 1 2-2h3l2 2h6l2-2h3a2 2 0 0 1 2 2v4"></path>
+                <rect x="2" y="9" width="20" height="10" rx="2"></rect>
+                <path d="M6 14h.01"></path>
+                <path d="M10 14h4"></path>
+              </svg>
+            </div>
+            <div className="min-w-0">
+              <h2 className="font-heading font-bold text-lg text-zinc-900 truncate">Budget Friendly Picks</h2>
+              <p className="text-zinc-500 text-xs">Quality events that won't cost much.</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-2 shrink-0">
+            <button onClick={handlePrev} className="flex items-center justify-center w-9 h-9 rounded-full bg-purple-100 text-purple-700 hover:bg-purple-200 transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="m15 18-6-6 6-6" />
+              </svg>
+            </button>
+            <button onClick={handleNext} className="flex items-center justify-center w-9 h-9 rounded-full bg-purple-100 text-purple-700 hover:bg-purple-200 transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="m9 18 6-6-6-6" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        {/* Event Cards */}
+        <div className="px-5 lg:px-0 pb-2">
+          <Swiper
+            ref={swiperRef}
+            modules={[Navigation, Pagination, A11y]}
+            spaceBetween={16}
+            slidesPerView={1}
+            pagination={{ clickable: true }}
+            breakpoints={{
+              640: {
+                slidesPerView: 1,
+                spaceBetween: 20,
+              },
+              768: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+              },
+              1024: {
+                slidesPerView: 2,
+                spaceBetween: 24,
+              },
+            }}
+            className="w-full"
           >
-            More free events
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="12"
-              height="12"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="inline align-middle shrink-0 ml-1"
-            >
-              <path d="M5 12h14" />
-              <path d="m12 5 7 7-7 7" />
-            </svg>
-          </Link>
-        </div>
-        <p className="text-[12px] text-zinc-400 px-5 mt-1 mb-4 lg:px-0">
-          Great events, easy on the wallet
-        </p>
-
-        {/* Mobile layout (single column list) */}
-        <div className="mx-5 bg-white rounded-xl overflow-hidden shadow-sm ring-1 ring-zinc-100 lg:hidden">
-          {freeLowCostEvents.map((event) => (
-            <Link
-              key={event.id}
-              className="card-press flex gap-3 px-4 py-3.5 border-t first:border-t-0 border-zinc-100"
-              to={`/events/${event.id}`}
-            >
-              <div className="relative w-[72px] h-[72px] shrink-0 rounded-lg overflow-hidden">
-                <img
-                  alt={event.title}
-                  loading="lazy"
-                  className="object-cover object-center w-full h-full"
-                  src={event.image}
-                />
-              </div>
-              <div className="flex-1 min-w-0 flex flex-col justify-center">
-                <h3 className="font-heading font-normal text-[15px] text-zinc-900 leading-snug line-clamp-2 mb-1">
-                  {event.title}
-                </h3>
-                <p className="text-[11px] text-zinc-400 mb-2">
-                  {event.date} · {event.venue}
-                </p>
-                <div className="flex items-center gap-2">
-                  <p className="text-[13px] font-normal text-amber-500">
-                    {event.price}
-                  </p>
-                  <span className="text-[10px] font-normal text-zinc-500 bg-zinc-100 px-2 py-0.5 rounded capitalize">
-                    {event.category}
-                  </span>
-                </div>
-              </div>
-              <div className="flex items-center self-center ml-1">
-                <svg
-                  width="7"
-                  height="12"
-                  viewBox="0 0 8 14"
-                  fill="none"
-                  className="text-zinc-300"
+            {freeLowCostEvents.map((event) => (
+              <SwiperSlide key={event.id}>
+                <Link
+                  to={`/events/${event.id}`}
+                  className="bg-white rounded-2xl p-3 shadow-lg flex gap-3 items-center hover:shadow-xl transition-shadow lg:p-4 lg:gap-4"
                 >
-                  <path
-                    d="M1 1l6 6-6 6"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
-            </Link>
-          ))}
-        </div>
-
-        {/* Desktop layout (2‑column grid) */}
-        <div className="hidden lg:grid lg:grid-cols-2 lg:gap-3">
-          {freeLowCostEvents.map((event) => (
-            <div key={event.id} className="bg-white rounded-xl overflow-hidden shadow-sm ring-1 ring-zinc-100 hover:shadow-md transition-shadow">
-              <Link
-                className="card-press flex gap-3 px-4 py-3.5"
-                to={`/events/${event.id}`}
-              >
-                <div className="relative w-[72px] h-[72px] shrink-0 rounded-lg overflow-hidden">
-                  <img
-                    alt={event.title}
-                    loading="lazy"
-                    className="object-cover object-center w-full h-full"
-                    src={event.image}
-                  />
-                </div>
-                <div className="flex-1 min-w-0 flex flex-col justify-center">
-                  <h3 className="font-heading font-normal text-[15px] text-zinc-900 leading-snug line-clamp-2 mb-1">
-                    {event.title}
-                  </h3>
-                  <p className="text-[11px] text-zinc-400 mb-2">
-                    {event.date} · {event.venue}
-                  </p>
-                  <div className="flex items-center gap-2">
-                    <p className="text-[13px] font-normal text-amber-500">
-                      {event.price}
-                    </p>
-                    <span className="text-[10px] font-normal text-zinc-500 bg-zinc-100 px-2 py-0.5 rounded capitalize">
+                  <div className="relative w-24 h-24 rounded-xl overflow-hidden shrink-0 lg:w-28 lg:h-28">
+                    <img
+                      alt={event.title}
+                      loading="lazy"
+                      className="object-cover object-center w-full h-full"
+                      src={event.image}
+                    />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    {event.price === "FREE" && (
+                      <span className="inline-block px-2 py-1 rounded-lg bg-green-100 text-green-700 text-xs font-semibold mb-1.5">
+                        FREE
+                      </span>
+                    )}
+                    <h3 className="font-heading font-bold text-lg text-zinc-900 mb-1.5 line-clamp-2 lg:text-xl">
+                      {event.title}
+                    </h3>
+                    <div className="flex items-center gap-1.5 text-zinc-500 text-xs mb-1.5 lg:text-sm lg:gap-2">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lg:w-4 lg:h-4">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                      </svg>
+                      {event.date}
+                    </div>
+                    <div className="flex items-center gap-1.5 text-zinc-500 text-xs mb-2 lg:text-sm lg:gap-2 lg:mb-3">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                      </svg>
+                      <span className="truncate">{event.venue}</span>
+                    </div>
+                    <span className="inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-green-100 text-green-700 text-xs font-semibold lg:px-3 lg:py-1">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lg:w-4 lg:h-4">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                      </svg>
                       {event.category}
                     </span>
                   </div>
-                </div>
-                <div className="flex items-center self-center ml-1">
-                  <svg
-                    width="7"
-                    height="12"
-                    viewBox="0 0 8 14"
-                    fill="none"
-                    className="text-zinc-300"
-                  >
-                    <path
-                      d="M1 1l6 6-6 6"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </div>
-              </Link>
-            </div>
-          ))}
+                  <div className="flex items-center justify-center w-9 h-9 rounded-full bg-purple-100 shrink-0 lg:w-10 lg:h-10">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9139f6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lg:w-5 lg:h-5">
+                      <path d="M5 12h14" />
+                      <path d="m12 5 7 7-7 7" />
+                    </svg>
+                  </div>
+                </Link>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
       </div>
     </section>
@@ -491,9 +493,9 @@ const BitbandyHomepage = () => {
             >
               <div className="relative px-6 pt-8 pb-8 lg:px-12 lg:pt-12 lg:pb-12">
                 <div className="relative z-10">
-                  <p className="text-[10px] font-normal text-zinc-600 uppercase tracking-[0.2em] mb-4 lg:text-[11px]">Lagos · Port Harcourt · Abuja · Nigeria</p>
+                  <p className="text-[10px] font-normal text-zinc-600 uppercase tracking-[0.2em] mb-4 lg:text-[11px]">Accra · Kumasi · Tamale · Ghana</p>
                   <h1 className="font-heading font-bold text-[40px] leading-[1.1] tracking-tight text-zinc-900 mb-4 lg:text-[64px] lg:mb-6">
-                    DISCOVER<br />EVENTS<br />AROUND YOU<br />WITH <span className="text-brand-accent">Bitbandy!</span>
+                    <br /><br />AROUND YOU<br />WITH <span className="text-brand-accent">Bitbandy!</span>
                   </h1>
                   <p className="text-[14px] text-zinc-700 leading-relaxed max-w-[320px] mb-6 lg:text-[16px] lg:max-w-[380px]">Music, comedy, corporate, sports, everything happening near you, all in one place.</p>
                   <div className="flex items-center gap-4">
@@ -509,75 +511,116 @@ const BitbandyHomepage = () => {
         {/* Hero Carousel */}
         <section className="px-5 pt-10 lg:px-0">
           <div className="lg:max-w-[1280px] lg:mx-auto lg:px-8 lg:py-8">
-            <div className="bg-zinc-50 rounded-3xl overflow-hidden lg:flex lg:h-[420px]">
-              <div className="relative h-[200px] lg:h-full lg:flex-1 shrink-0 overflow-hidden">
+            <div className="bg-white rounded-3xl overflow-hidden shadow-lg lg:flex lg:h-[450px]">
+              {/* Left - Image & Overlay Content */}
+              <div className="relative h-[250px] lg:h-full lg:flex-1 shrink-0 overflow-hidden rounded-t-3xl lg:rounded-l-3xl lg:rounded-tr-none">
                 {heroSlides.map((slide, idx) => (
                   <div
                     key={slide.id}
                     className={`hero-slide absolute inset-0 transition-opacity duration-500 ${activeSlide === idx ? 'opacity-100' : 'opacity-0'}`}
                   >
                     <img src={slide.image} alt={slide.title} className="object-cover w-full h-full" />
-                    {/* Header with date and countdown */}
-                    <div className="absolute top-0 left-0 right-0 z-10 bg-zinc-900/90 backdrop-blur-sm px-4 py-2 flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <div className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 w-7 h-7">
-                          <Calendar size={13} color="white" />
-                        </div>
-                        <span className="text-white text-xs font-normal">{slide.date}</span>
+                    
+                    {/* Top Badges */}
+                    <div className="absolute top-6 left-6 right-6 z-10 flex items-center justify-between">
+                      <div className="flex items-center gap-2 px-4 py-2 rounded-2xl bg-white/20 backdrop-blur-md">
+                        <Calendar size={16} color="white" />
+                        <span className="text-white text-sm font-medium">{slide.date}</span>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <div className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 w-6 h-6">
-                          <Clock size={11} color="white" />
-                        </div>
-                        <span className="text-zinc-200 text-xs font-normal whitespace-nowrap">{slide.countdown}</span>
+                      <div className="flex items-center gap-2 px-4 py-2 rounded-2xl bg-white/20 backdrop-blur-md">
+                        <Clock size={16} color="white" />
+                        <span className="text-white text-sm font-medium">{slide.countdown}</span>
                       </div>
                     </div>
-                    {/* Gradient overlay */}
-                    <div className="absolute left-0 right-0 bottom-0 h-24 bg-gradient-to-t from-black/75 to-transparent"></div>
-                    {/* Category badge */}
-                    <div className="absolute top-14 left-3 z-10">
-                      <div className="inline-flex items-center gap-1.5 bg-black/75 backdrop-blur-md text-white text-[10px] font-normal uppercase tracking-widest px-3 py-1.5 rounded-full border border-white/10">
-                        <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: '#9139f6' }}></span>
+
+                    {/* Category Badge */}
+                    <div className="absolute top-24 left-6 z-10">
+                      <div className="inline-flex items-center gap-2 bg-black/60 backdrop-blur-md text-white text-xs font-medium uppercase tracking-widest px-4 py-2 rounded-full border border-white/20">
+                        <span className="w-2 h-2 rounded-full" style={{ backgroundColor: '#9139f6' }}></span>
                         <span>{slide.category}</span>
                       </div>
                     </div>
-                    {/* Organizer info */}
-                    <div className="absolute bottom-3 left-3 z-10 flex items-center gap-2">
-                      <div className="inline-flex items-center justify-center min-w-8 min-h-8 rounded-full bg-black/80 border border-white/15">
-                        <IoPerson size={14} color="white" />
+
+                    {/* Gradient Overlay */}
+                    <div className="absolute left-0 right-0 bottom-0 h-32 bg-gradient-to-t from-black/80 to-transparent"></div>
+
+                    {/* Organizer Info */}
+                    <div className="absolute bottom-6 left-6 right-6 z-10 flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/20 backdrop-blur-md border border-white/30">
+                          <div className="w-6 h-6 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold text-xs">
+                            {slide.organizer.charAt(0)}
+                          </div>
+                        </div>
+                        <span className="text-white text-sm font-medium">{slide.organizer}</span>
                       </div>
-                      <span className="text-white text-sm font-normal">{slide.organizer}</span>
+                    </div>
+
+                    {/* Slide Indicators */}
+                    <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2">
+                      {heroSlides.map((_, idx) => (
+                        <button
+                          key={idx}
+                          onClick={() => setActiveSlide(idx)}
+                          className={`h-1.5 rounded-full transition-all duration-300 ${
+                            activeSlide === idx ? 'w-10 bg-brand-accent' : 'w-4 bg-white/30'
+                          }`}
+                        />
+                      ))}
                     </div>
                   </div>
                 ))}
-                {/* Progress bar */}
-                <div className="absolute bottom-0 inset-x-0 h-[3px] bg-white/10 z-10">
-                  <div className="h-full bg-brand-accent transition-all duration-500" style={{ width: `${((activeSlide + 1) / heroSlides.length) * 100}%` }}></div>
-                </div>
               </div>
-              <div className="px-4 pt-4 pb-5 lg:w-[340px] lg:shrink-0 lg:flex lg:flex-col lg:justify-between lg:p-10">
+
+              {/* Right - Details */}
+              <div className="px-6 pt-6 pb-6 lg:w-[380px] lg:shrink-0 lg:flex lg:flex-col lg:justify-between lg:p-10 bg-white">
                 <div>
-                  <p className="text-[10px] font-normal text-zinc-400 uppercase tracking-widest mb-1 lg:text-[11px]">{heroSlides[activeSlide].category} · {heroSlides[activeSlide].date}</p>
-                  <h2 className="font-heading text-[22px] lg:text-[30px] text-zinc-900 leading-[1.1] mb-1">{heroSlides[activeSlide].title}</h2>
-                  <p className="text-[12px] lg:text-[13px] text-zinc-500 mb-5 lg:mb-0">{heroSlides[activeSlide].venue} · 1:00 AM</p>
-                </div>
-                <div className="flex items-end justify-between lg:flex-col lg:items-start lg:gap-6">
-                  <div>
-                    <p className="text-[10px] text-zinc-400 mb-0.5 uppercase tracking-wide">From</p>
-                    <p className="text-[22px] lg:text-[32px] font-normal text-zinc-900 leading-none">₦{heroSlides[activeSlide].price.toLocaleString()}</p>
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="text-brand-accent text-xs font-semibold uppercase tracking-widest">{heroSlides[activeSlide].category} EVENT</span>
+                    <span className="text-zinc-400 text-xs">·</span>
+                    <span className="text-zinc-400 text-xs">{heroSlides[activeSlide].date}</span>
                   </div>
-                  <button className="bg-brand-accent text-white font-normal text-[14px] px-6 py-2.5 rounded-lg lg:w-full lg:text-center lg:py-3.5 hover:bg-brand-accent-hover transition-colors">Buy Tickets</button>
+                  <h2 className="font-heading font-bold text-[36px] text-zinc-900 leading-tight mb-4">{heroSlides[activeSlide].title}</h2>
+                  
+                  <div className="space-y-2 mb-6">
+                    <div className="flex items-center gap-2">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a1a1aa" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                      </svg>
+                      <span className="text-zinc-600">{heroSlides[activeSlide].venue}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a1a1aa" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                      </svg>
+                      <span className="text-zinc-600">1:00 AM</span>
+                    </div>
+                  </div>
+
+                  <div className="border-t border-zinc-100 pt-6">
+                    <p className="text-[10px] text-zinc-400 mb-1 uppercase tracking-wide">From</p>
+                    <p className="text-[32px] font-bold text-zinc-900 leading-none">₦{heroSlides[activeSlide].price.toLocaleString()}</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3 mt-8">
+                  <button className="flex-1 bg-brand-accent text-white font-semibold text-sm px-6 py-4 rounded-xl hover:bg-brand-accent-hover transition-colors flex items-center justify-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                      <line x1="3" y1="10" x2="21" y2="10"></line>
+                      <path d="M16 13a4 4 0 0 1-8 0"></path>
+                    </svg>
+                    Buy Tickets
+                  </button>
+                  <button className="w-14 h-14 flex items-center justify-center rounded-xl bg-purple-50 text-purple-500 hover:bg-purple-100 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                  </button>
                 </div>
               </div>
-            </div>
-            <div className="lg:hidden flex justify-center gap-1.5 mt-3">
-              {heroSlides.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setActiveSlide(idx)}
-                  className={`rounded-full transition-all duration-300 ${activeSlide === idx ? 'w-6 h-1.5 bg-brand-accent' : 'w-1.5 h-1.5 bg-zinc-300'}`}
-                />
-              ))}
             </div>
           </div>
         </section>
@@ -591,20 +634,20 @@ const BitbandyHomepage = () => {
         <section className="py-8">
           <div className="lg:max-w-[1280px] lg:mx-auto lg:px-8">
             <div className="px-5 lg:px-0 mb-5">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="mt-1 flex h-9 w-9 items-center justify-center rounded-xl bg-purple-50 text-purple-700">
-                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
+              <div className="flex items-center justify-between gap-3">
+                <div className="flex items-center gap-3 min-w-0">
+                  <div className="shrink-0 flex h-9 w-9 items-center justify-center rounded-xl bg-purple-50 text-purple-700">
+                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="18" width="18" xmlns="http://www.w3.org/2000/svg">
                       <path fill="none" d="M0 0h24v24H0z"></path>
                       <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z"></path>
                     </svg>
                   </div>
-                  <div>
-                    <h2 className="font-heading font-bold text-xl text-zinc-900">FOR YOU</h2>
+                  <div className="min-w-0">
+                    <h2 className="font-heading font-bold text-lg text-zinc-900">FOR YOU</h2>
                     <p className="text-zinc-500 text-xs">Events we think you'll love</p>
                   </div>
                 </div>
-                <Link to="/discover" className="bg-purple-100 text-purple-700 font-semibold px-3 py-1.5 rounded-md hover:bg-purple-200 transition-colors text-xs">Browse all</Link>
+                <Link to="/discover" className="shrink-0 bg-purple-100 text-purple-700 font-semibold px-3 py-1.5 rounded-md hover:bg-purple-200 transition-colors text-xs whitespace-nowrap">Browse all</Link>
               </div>
             </div>
             <div className="flex gap-4 overflow-x-auto scrollbar-hide pl-5 pr-5 pb-1 lg:grid lg:grid-cols-4 lg:overflow-visible">
@@ -621,20 +664,20 @@ const BitbandyHomepage = () => {
         <section className="py-8">
           <div className="lg:max-w-[1280px] lg:mx-auto lg:px-8">
             <div className="px-5 lg:px-0 mb-5">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="mt-1 flex h-9 w-9 items-center justify-center rounded-xl bg-purple-50 text-purple-700">
-                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
+              <div className="flex items-center justify-between gap-3">
+                <div className="flex items-center gap-3 min-w-0">
+                  <div className="shrink-0 flex h-9 w-9 items-center justify-center rounded-xl bg-purple-50 text-purple-700">
+                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="18" width="18" xmlns="http://www.w3.org/2000/svg">
                       <path fill="none" d="M0 0h24v24H0z"></path>
                       <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z"></path>
                     </svg>
                   </div>
-                  <div>
-                    <h2 className="font-heading font-bold text-xl text-zinc-900">NEAR YOU</h2>
+                  <div className="min-w-0">
+                    <h2 className="font-heading font-bold text-lg text-zinc-900">NEAR YOU</h2>
                     <p className="text-zinc-500 text-xs">Port Harcourt · 4 nearby events</p>
                   </div>
                 </div>
-                <Link to="/discover" className="bg-purple-100 text-purple-700 font-semibold px-3 py-1.5 rounded-md hover:bg-purple-200 transition-colors text-xs">Browse all</Link>
+                <Link to="/discover" className="shrink-0 bg-purple-100 text-purple-700 font-semibold px-3 py-1.5 rounded-md hover:bg-purple-200 transition-colors text-xs whitespace-nowrap">Browse all</Link>
               </div>
             </div>
             <div className="flex gap-4 overflow-x-auto scrollbar-hide pl-5 pr-5 pb-1 lg:grid lg:grid-cols-4 lg:overflow-visible">
@@ -701,7 +744,7 @@ const BitbandyHomepage = () => {
                     <div className="absolute bottom-[-8px] left-0 w-8 h-1 bg-[#9139f6] rounded-full"></div>
                   </div>
                   <h2 className="font-heading font-bold text-[36px] lg:text-[42px] text-zinc-900 leading-tight mb-2">
-                    Explore events<br />by category
+                category
                   </h2>
                   <p className="text-[14px] text-zinc-600">Find exactly what you're into.</p>
                 </div>
