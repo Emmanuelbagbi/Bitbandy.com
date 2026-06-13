@@ -644,7 +644,7 @@ const BitbandyHomepage = () => {
         <section className="py-12 px-0 lg:px-0">
           <div className="lg:max-w-[1280px] lg:mx-auto lg:px-8">
             {/* Background container */}
-            <div className="relative bg-gradient-to-br from-white to-[#f8f0ff] rounded-3xl p-4 sm:p-8 lg:p-12 overflow-hidden mx-4 lg:mx-0">
+            <div className="relative bg-gradient-to-br from-white to-[#f8f0ff] lg:rounded-3xl p-4 sm:p-8 lg:p-12 overflow-hidden">
               {/* Decorative elements - top right dots */}
               <div className="absolute top-0 right-0 w-48 h-48 opacity-40">
                 <svg viewBox="0 0 100 100" fill="none">
