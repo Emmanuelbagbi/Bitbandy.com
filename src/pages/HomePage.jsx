@@ -31,7 +31,17 @@ const PartiesIconLarge = () => <svg width="30" height="30" viewBox="0 0 24 24" f
 const SportsIconLarge = () => <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5"><path d="M12 2L15 9L22 9L16.5 14L18.5 22L12 17.5L5.5 22L7.5 14L2 9L9 9L12 2Z" /></svg>;
 const LearningIconLarge = () => <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5"><path d="M22 10V16C22 18.2091 20.2091 20 18 20H6C3.79086 20 2 18.2091 2 16V10M2 10L12 5L22 10M2 10L12 15L22 10" strokeLinecap="round" strokeLinejoin="round" /></svg>;
 const FashionIconLarge = () => <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5"><path d="M8 5H16M8 5L6 9H18L16 5M8 5L5 19H19L16 5" strokeLinecap="round" strokeLinejoin="round" /></svg>;
-const FreeIconLarge = () => <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5"><path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2ZM12 17H8V15H12C13.1046 15 14 14.1046 14 13C14 11.8954 13.1046 11 12 11H8V9H14M12 7H8V5H16" strokeLinecap="round" strokeLinejoin="round" /></svg>;
+const FreeIconLarge = () => <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5"><path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 12 12 12ZM12 17H8V15H12C13.1046 15 14 14.1046 14 13C14 11.8954 13.1046 11 12 11H8V9H14M12 7H8V5H16" strokeLinecap="round" strokeLinejoin="round" /></svg>;
+
+// New category icons matching the image
+const NewMusicIcon = () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>;
+const NewComedyIcon = () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>;
+const NewCorporateIcon = () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 7h-9V3H3v18h18V7z"></path><path d="M14 3v4"></path><path d="M8 13v2"></path><path d="M12 13v2"></path><path d="M16 13v2"></path><path d="M8 19v2"></path><path d="M12 19v2"></path><path d="M16 19v2"></path></svg>;
+const NewPartiesIcon = () => <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>;
+const NewSportsIcon = () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>;
+const NewLearningIcon = () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path><path d="M8 7h8"></path><path d="M8 11h8"></path><path d="M8 15h6"></path></svg>;
+const NewFashionIcon = () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>;
+const NewFreeIcon = () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 5v2"></path><path d="M15 17v2"></path><path d="M3 11V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v4"></path><path d="M21 13v4a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4v-2"></path><path d="M12 5a3 3 0 0 0-3 3v4a3 3 0 0 0 3 3h2a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3h-2z"></path></svg>;
 
 // Mock event data
 const eventsData = [
@@ -359,13 +369,24 @@ const categories = [
   { id: 'free', label: 'Free', icon: <FreeIcon /> }
 ];
 
-const CategoryCard = ({ title, count, bgGradient, icon }) => (
-  <Link to={`/discover?category=${title.toLowerCase()}`} className="relative flex items-center gap-3 h-[68px] lg:h-[80px] px-4 rounded-xl overflow-hidden" style={{ background: bgGradient }}>
-    <span className="relative shrink-0 z-10">{icon}</span>
-    <div className="relative z-10 flex flex-col items-start min-w-0">
-      <span className="text-[13px] font-normal text-white leading-snug">{title}</span>
-      <span className="text-[11px] text-white/50 font-normal">{count}</span>
+const CategoryCard = ({ title, count, iconGradient, icon, rightShape }) => (
+  <Link to={`/discover?category=${title.toLowerCase()}`} className="relative bg-white rounded-2xl p-5 shadow-sm border border-zinc-100 hover:shadow-md transition-all duration-200 overflow-hidden flex items-center gap-4">
+    {/* Icon */}
+    <div 
+      className="relative w-14 h-14 rounded-full flex items-center justify-center shrink-0"
+      style={{ background: iconGradient }}
+    >
+      {icon}
     </div>
+    
+    {/* Content */}
+    <div className="relative z-10 flex-1">
+      <h3 className="font-heading font-semibold text-[18px] text-zinc-900 leading-tight">{title}</h3>
+      <p className="text-[14px] text-zinc-600 font-normal">{count}</p>
+    </div>
+    
+    {/* Right shape */}
+    <div className="absolute right-0 top-0 bottom-0 w-24 opacity-70" dangerouslySetInnerHTML={{ __html: rightShape }}></div>
   </Link>
 );
 
@@ -620,21 +641,150 @@ const BitbandyHomepage = () => {
         <FreeLowCostSection />
 
         {/* Browse Categories Grid */}
-        <section className="py-12 px-5 lg:px-0">
+        <section className="py-12 px-0 lg:px-0">
           <div className="lg:max-w-[1280px] lg:mx-auto lg:px-8">
-            <div className="flex items-baseline justify-between mb-5">
-              <h2 className="font-heading font-normal text-[18px] tracking-wide text-zinc-900">BROWSE</h2>
-              <Link to="/discover" className="text-[12px] font-normal text-brand-accent">All categories <ArrowRightIcon /></Link>
-            </div>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
-              <CategoryCard title="Music" count="48 events" bgGradient="linear-gradient(135deg, rgb(59, 7, 100) 0%, rgb(109, 40, 217) 100%)" icon={<MusicIconLarge />} />
-              <CategoryCard title="Comedy" count="19 events" bgGradient="linear-gradient(135deg, rgb(120, 53, 15) 0%, rgb(217, 119, 6) 100%)" icon={<ComedyIconLarge />} />
-              <CategoryCard title="Corporate" count="34 events" bgGradient="linear-gradient(135deg, rgb(30, 58, 95) 0%, rgb(29, 78, 216) 100%)" icon={<CorporateIconLarge />} />
-              <CategoryCard title="Parties" count="27 events" bgGradient="linear-gradient(135deg, rgb(80, 7, 36) 0%, rgb(190, 24, 93) 100%)" icon={<PartiesIconLarge />} />
-              <CategoryCard title="Sports" count="15 events" bgGradient="linear-gradient(135deg, rgb(20, 83, 45) 0%, rgb(22, 163, 74) 100%)" icon={<SportsIconLarge />} />
-              <CategoryCard title="Learning" count="22 events" bgGradient="linear-gradient(135deg, rgb(12, 74, 110) 0%, rgb(2, 132, 199) 100%)" icon={<LearningIconLarge />} />
-              <CategoryCard title="Fashion" count="11 events" bgGradient="linear-gradient(135deg, rgb(74, 4, 78) 0%, rgb(219, 39, 119) 100%)" icon={<FashionIconLarge />} />
-              <CategoryCard title="Free Events" count="36 events" bgGradient="linear-gradient(135deg, rgb(69, 26, 3) 0%, rgb(180, 83, 9) 100%)" icon={<FreeIconLarge />} />
+            {/* Background container */}
+            <div className="relative bg-gradient-to-br from-white to-[#f8f0ff] rounded-3xl p-4 sm:p-8 lg:p-12 overflow-hidden mx-4 lg:mx-0">
+              {/* Decorative elements - top right dots */}
+              <div className="absolute top-0 right-0 w-48 h-48 opacity-40">
+                <svg viewBox="0 0 100 100" fill="none">
+                  <circle cx="10" cy="10" r="3" fill="#9139f6" />
+                  <circle cx="26" cy="10" r="3" fill="#9139f6" />
+                  <circle cx="42" cy="10" r="3" fill="#9139f6" />
+                  <circle cx="58" cy="10" r="3" fill="#9139f6" />
+                  <circle cx="74" cy="10" r="3" fill="#9139f6" />
+                  <circle cx="90" cy="10" r="3" fill="#9139f6" />
+                  <circle cx="10" cy="26" r="3" fill="#9139f6" />
+                  <circle cx="26" cy="26" r="3" fill="#9139f6" />
+                  <circle cx="42" cy="26" r="3" fill="#9139f6" />
+                  <circle cx="58" cy="26" r="3" fill="#9139f6" />
+                  <circle cx="74" cy="26" r="3" fill="#9139f6" />
+                  <circle cx="90" cy="26" r="3" fill="#9139f6" />
+                  <circle cx="10" cy="42" r="3" fill="#9139f6" />
+                  <circle cx="26" cy="42" r="3" fill="#9139f6" />
+                  <circle cx="42" cy="42" r="3" fill="#9139f6" />
+                  <circle cx="58" cy="42" r="3" fill="#9139f6" />
+                  <circle cx="74" cy="42" r="3" fill="#9139f6" />
+                  <circle cx="90" cy="42" r="3" fill="#9139f6" />
+                  <circle cx="10" cy="58" r="3" fill="#9139f6" />
+                  <circle cx="26" cy="58" r="3" fill="#9139f6" />
+                  <circle cx="42" cy="58" r="3" fill="#9139f6" />
+                  <circle cx="58" cy="58" r="3" fill="#9139f6" />
+                  <circle cx="74" cy="58" r="3" fill="#9139f6" />
+                  <circle cx="90" cy="58" r="3" fill="#9139f6" />
+                </svg>
+              </div>
+              
+              {/* Decorative elements - bottom left circles */}
+              <div className="absolute bottom-0 left-0 w-64 h-48 opacity-20">
+                <svg viewBox="0 0 200 100" fill="none">
+                  <circle cx="50" cy="80" r="40" stroke="#9139f6" strokeWidth="2" />
+                  <circle cx="120" cy="90" r="60" stroke="#9139f6" strokeWidth="1" />
+                </svg>
+              </div>
+              
+              {/* Header */}
+              <div className="relative z-10 flex flex-col lg:flex-row lg:items-end lg:justify-between mb-10">
+                <div>
+                  <div className="relative inline-block mb-4">
+                    <h3 className="text-[#9139f6] text-[12px] font-semibold tracking-widest uppercase">BROWSE</h3>
+                    <div className="absolute bottom-[-8px] left-0 w-8 h-1 bg-[#9139f6] rounded-full"></div>
+                  </div>
+                  <h2 className="font-heading font-bold text-[36px] lg:text-[42px] text-zinc-900 leading-tight mb-2">
+                    Explore events<br />by category
+                  </h2>
+                  <p className="text-[14px] text-zinc-600">Find exactly what you're into.</p>
+                </div>
+                <Link to="/discover" className="hidden lg:inline-flex items-center gap-2 text-[14px] font-medium text-[#9139f6] bg-white px-5 py-2.5 rounded-full border border-[#9139f6]/30 hover:bg-[#9139f6] hover:text-white transition-all duration-200 mt-4 lg:mt-0">
+                  All categories
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                  </svg>
+                </Link>
+              </div>
+              
+              {/* Categories grid */}
+              <div className="relative z-10 grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-5">
+                <CategoryCard 
+                  title="Music" 
+                  count="48 events" 
+                  iconGradient="linear-gradient(135deg, #6d28d9 0%, #a855f7 100%)" 
+                  icon={<NewMusicIcon />} 
+                  rightShape={`
+                    <svg viewBox="0 0 100 100" fill="none">
+                      <path d="M0 100 Q50 0 100 100 Z" fill="#d8b4fe" />
+                    </svg>
+                  `}
+                />
+                <CategoryCard 
+                  title="Comedy" 
+                  count="19 events" 
+                  iconGradient="linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%)" 
+                  icon={<NewComedyIcon />} 
+                  rightShape={`
+                    <svg viewBox="0 0 100 100" fill="none">
+                      <path d="M0 0 Q50 100 100 0 Z" fill="#fde68a" />
+                      <path d="M20 100 Q60 0 100 100 Z" fill="#fed7aa" />
+                    </svg>
+                  `}
+                />
+                <CategoryCard 
+                  title="Corporate" 
+                  count="34 events" 
+                  iconGradient="linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%)" 
+                  icon={<NewCorporateIcon />} 
+                  rightShape={`
+                    <svg viewBox="0 0 100 100" fill="none">
+                      <path d="M0 0 L60 0 L100 100 L0 100 Z" fill="#bfdbfe" />
+                      <line x1="10" y1="30" x2="70" y2="30" stroke="#93c5fd" strokeWidth="3" />
+                      <line x1="20" y1="50" x2="80" y2="50" stroke="#93c5fd" strokeWidth="3" />
+                      <line x1="30" y1="70" x2="90" y2="70" stroke="#93c5fd" strokeWidth="3" />
+                    </svg>
+                  `}
+                />
+                <CategoryCard 
+                  title="Parties" 
+                  count="27 events" 
+                  iconGradient="linear-gradient(135deg, #be185d 0%, #ec4899 100%)" 
+                  icon={<NewPartiesIcon />} 
+                  rightShape={`
+                    <svg viewBox="0 0 100 100" fill="none">
+                      <path d="M0 0 L100 0 L100 100 Q50 50 0 100 Z" fill="#fbcfe8" />
+                      <polygon points="70,70 75,80 85,80 77,87 80,97 70,90 60,97 63,87 55,80 65,80" fill="#fdf4ff" />
+                      <polygon points="80,60 83,67 90,67 85,71 87,78 80,74 73,78 75,71 70,67 77,67" fill="#fdf4ff" />
+                    </svg>
+                  `}
+                />
+                <CategoryCard 
+                  title="Sports" 
+                  count="15 events" 
+                  iconGradient="linear-gradient(135deg, #15803d 0%, #22c55e 100%)" 
+                  icon={<NewSportsIcon />} 
+                  rightShape={`<svg viewBox="0 0 100 100" fill="none"><path d="M0 0 L40 0 L100 100 L0 100 Z" fill="#dcfce7" /><circle cx="20" cy="30" r="4" fill="#86efac" /><circle cx="35" cy="30" r="4" fill="#86efac" /><circle cx="50" cy="30" r="4" fill="#86efac" /><circle cx="65" cy="30" r="4" fill="#86efac" /><circle cx="80" cy="30" r="4" fill="#86efac" /><circle cx="20" cy="45" r="4" fill="#86efac" /><circle cx="35" cy="45" r="4" fill="#86efac" /><circle cx="50" cy="45" r="4" fill="#86efac" /><circle cx="65" cy="45" r="4" fill="#86efac" /><circle cx="80" cy="45" r="4" fill="#86efac" /><circle cx="20" cy="60" r="4" fill="#86efac" /><circle cx="35" cy="60" r="4" fill="#86efac" /><circle cx="50" cy="60" r="4" fill="#86efac" /><circle cx="65" cy="60" r="4" fill="#86efac" /><circle cx="80" cy="60" r="4" fill="#86efac" /></svg>`}
+                />
+                <CategoryCard 
+                  title="Learning" 
+                  count="22 events" 
+                  iconGradient="linear-gradient(135deg, #0e7490 0%, #06b6d4 100%)" 
+                  icon={<NewLearningIcon />} 
+                  rightShape={`<svg viewBox="0 0 100 100" fill="none"><path d="M0 0 Q30 50 0 100 L100 100 L100 0 Z" fill="#a5f3fc" /></svg>`}
+                />
+                <CategoryCard 
+                  title="Fashion" 
+                  count="11 events" 
+                  iconGradient="linear-gradient(135deg, #db2777 0%, #f43f5e 100%)" 
+                  icon={<NewFashionIcon />} 
+                  rightShape={`<svg viewBox="0 0 100 100" fill="none"><path d="M0 0 L100 0 L100 100 Z" fill="#fecdd3" /><path d="M-10 80 Q45 40 100 80" stroke="#fda4af" strokeWidth="5" fill="none" /><path d="M-10 90 Q45 50 100 90" stroke="#fda4af" strokeWidth="5" fill="none" /></svg>`}
+                />
+                <CategoryCard 
+                  title="Free Events" 
+                  count="36 events" 
+                  iconGradient="linear-gradient(135deg, #ea580c 0%, #f97316 100%)" 
+                  icon={<NewFreeIcon />} 
+                  rightShape={`<svg viewBox="0 0 100 100" fill="none"><path d="M0 0 Q50 100 100 0 L100 100 L0 100 Z" fill="#fed7aa" /><rect x="15" y="20" width="8" height="8" rx="2" fill="#fdba74" /><rect x="33" y="20" width="8" height="8" rx="2" fill="#fdba74" /><rect x="51" y="20" width="8" height="8" rx="2" fill="#fdba74" /><rect x="69" y="20" width="8" height="8" rx="2" fill="#fdba74" /><rect x="15" y="38" width="8" height="8" rx="2" fill="#fdba74" /><rect x="33" y="38" width="8" height="8" rx="2" fill="#fdba74" /><rect x="51" y="38" width="8" height="8" rx="2" fill="#fdba74" /><rect x="69" y="38" width="8" height="8" rx="2" fill="#fdba74" /><rect x="15" y="56" width="8" height="8" rx="2" fill="#fdba74" /><rect x="33" y="56" width="8" height="8" rx="2" fill="#fdba74" /><rect x="51" y="56" width="8" height="8" rx="2" fill="#fdba74" /><rect x="69" y="56" width="8" height="8" rx="2" fill="#fdba74" /></svg>`}
+                />
+              </div>
             </div>
           </div>
         </section>
