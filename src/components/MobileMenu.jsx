@@ -62,7 +62,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
         <nav className="flex-1 px-5 pt-8 flex flex-col">
           <Link
             to="/"
-            className="font-heading text-[34px] leading-[1.15] tracking-wide text-left py-2 text-zinc-900"
+            className="font-heading text-[28px] leading-[1.15] tracking-wide text-left py-2 text-zinc-900"
             style={{ animation: '0.4s ease-out 0ms 1 normal both running nav-item-in' }}
             onClick={onClose}
           >
@@ -70,7 +70,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
           </Link>
           <Link
             to="/Events"
-            className="font-heading text-[34px] leading-[1.15] tracking-wide text-left py-2 text-zinc-900"
+            className="font-heading text-[28px] leading-[1.15] tracking-wide text-left py-2 text-zinc-900"
             style={{ animation: '0.4s ease-out 60ms 1 normal both running nav-item-in' }}
             onClick={onClose}
           >
@@ -78,7 +78,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
           </Link>
           <Link
             to="/tickets"
-            className="font-heading text-[34px] leading-[1.15] tracking-wide text-left py-2 text-zinc-900"
+            className="font-heading text-[28px] leading-[1.15] tracking-wide text-left py-2 text-zinc-900"
             style={{ animation: '0.4s ease-out 120ms 1 normal both running nav-item-in' }}
             onClick={onClose}
           >
@@ -86,7 +86,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
           </Link>
           <Link
             to="/for-organizers"
-            className="font-heading text-[34px] leading-[1.15] tracking-wide text-left py-2"
+            className="font-heading text-[28px] leading-[1.15] tracking-wide text-left py-2 whitespace-nowrap"
             style={{ 
               color: '#9139f6', 
               animation: '0.4s ease-out 180ms 1 normal both running nav-item-in' 
@@ -97,7 +97,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
           </Link>
           <Link
             to="/about"
-            className="font-heading text-[34px] leading-[1.15] tracking-wide text-left py-2 text-zinc-900"
+            className="font-heading text-[28px] leading-[1.15] tracking-wide text-left py-2 text-zinc-900"
             style={{ animation: '0.4s ease-out 240ms 1 normal both running nav-item-in' }}
             onClick={onClose}
           >
@@ -105,7 +105,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
           </Link>
           <Link
             to="/how-it-works"
-            className="font-heading text-[34px] leading-[1.15] tracking-wide text-left py-2 text-zinc-900"
+            className="font-heading text-[28px] leading-[1.15] tracking-wide text-left py-2 text-zinc-900"
             style={{ animation: '0.4s ease-out 300ms 1 normal both running nav-item-in' }}
             onClick={onClose}
           >
