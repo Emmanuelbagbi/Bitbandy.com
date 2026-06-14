@@ -532,7 +532,7 @@ const BrowseCategories = () => {
       <div className="lg:max-w-[1280px] lg:mx-auto lg:px-8">
         {/* Header */}
         <div className="flex items-baseline justify-between mb-5 mx-5 lg:mx-0">
-          <h2 className="font-heading text-[18px] tracking-wide text-black" style={{ color: 'black' }}>
+          <h2 className="font-heading text-[18px] tracking-wide text-zinc-900 dark:text-zinc-50">
             BROWSE
           </h2>
           <Link
@@ -930,8 +930,7 @@ const BitbandyHomepage = () => {
         {/* Free & Low Cost Section */}
         <FreeLowCostSection />
 
-        {/* Browse Categories Grid */}
-        <BrowseCategories />
+        {/* <BrowseCategories /> */}
 
         {/* CTA for Organizers */}
         <section className="px-5 mt-4 lg:px-0 lg:mt-8">
