@@ -212,30 +212,60 @@ const trendingEvents = [
 const filterOptions = ['Trending', 'Corporate', 'Concerts'];
 
 const TrendingSection = () => {
-  const displayedEvents = trendingEvents;
+  const [selectedCategory, setSelectedCategory] = useState('All Events');
+  
+  // Category options for the buttons
+  const categories = ['All Events', 'Music', 'Corporate', 'Sports', 'Comedy', 'Fashion', 'Education'];
+  
   return (
-    <section className="py-8">
+    <section className="py-12">
       <div className="lg:max-w-[1280px] lg:mx-auto lg:px-8">
-        <div className="px-5 lg:px-0 mb-5">
-          <div className="flex items-center justify-between gap-3">
-            <div className="flex items-center gap-3 min-w-0">
-              <div className="shrink-0 flex h-9 w-9 items-center justify-center rounded-xl bg-purple-50 text-purple-700">
-                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="18" width="18" xmlns="http://www.w3.org/2000/svg">
+        <div className="px-5 lg:px-0 mb-8">
+          <div className="flex items-start justify-between gap-6 flex-col lg:flex-row">
+            <div className="flex items-start gap-3 min-w-0">
+              <div className="shrink-0 flex h-8 w-8 items-center justify-center rounded-lg bg-purple-100 text-purple-600">
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="16" width="16" xmlns="http://www.w3.org/2000/svg">
                   <path fill="none" d="M0 0h24v24H0z"></path>
-                  <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z"></path>
+                  <path d="M12 2L13.5 8.5L20 9L15 13L16.5 20L12 17.77L7.5 20L9 13L4 9L10.5 8.5L12 2z"></path>
                 </svg>
               </div>
               <div className="min-w-0">
-                <h2 className="font-heading font-bold text-lg text-zinc-900">TRENDING</h2>
-                <p className="text-zinc-500 text-xs">Top events everyone's talking about</p>
+                <p className="text-[11px] font-normal text-purple-600 uppercase tracking-[0.15em] mb-1">TRENDING NEAR YOU</p>
+                <h2 className="font-heading font-bold text-[24px] text-zinc-900">Top events everyone's talking about</h2>
+                <p className="text-zinc-500 text-[14px] mt-2">Find the hottest concerts, festivals, sports and more happening near you.</p>
               </div>
             </div>
-            <Link to="/discover" className="shrink-0 bg-purple-100 text-purple-700 font-semibold px-3 py-1.5 rounded-md hover:bg-purple-200 transition-colors text-xs whitespace-nowrap">Browse all</Link>
+            <Link to="/discover" className="shrink-0 inline-flex items-center gap-2 px-6 py-2.5 border border-purple-200 text-purple-700 font-medium rounded-xl hover:bg-purple-50 transition-colors whitespace-nowrap">
+              Browse all events
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M5 12h14" />
+                <path d="m12 5 7 7-7 7" />
+              </svg>
+            </Link>
+          </div>
+          
+          {/* Category buttons */}
+          <div className="flex gap-3 overflow-x-auto scrollbar-hide mt-6">
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => setSelectedCategory(category)}
+                className={`px-5 py-2.5 rounded-xl text-[13px] font-medium transition-all whitespace-nowrap ${
+                  selectedCategory === category
+                    ? 'bg-purple-600 text-white shadow-md'
+                    : 'bg-white text-zinc-700 border border-zinc-200 hover:border-purple-300'
+                }`}
+              >
+                {category}
+              </button>
+            ))}
           </div>
         </div>
-        <div className="flex gap-4 overflow-x-auto scrollbar-hide pl-5 pr-5 pb-1 lg:grid lg:grid-cols-4 lg:overflow-visible">
-          {displayedEvents.map((event) => (
-            <Link key={event.id} to={`/events/${event.id}`} className="shrink-0 w-[260px] lg:w-auto">
+        
+        {/* Events grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 px-5 lg:px-0">
+          {trendingEvents.map((event) => (
+            <Link key={event.id} to={`/events/${event.id}`} className="group">
               <EventCard event={event} />
             </Link>
           ))}
@@ -671,41 +701,45 @@ const BitbandyHomepage = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <header className="container mx-auto px-5 lg:px-8 pt-4 pb-4 sticky top-0 bg-white z-50">
-        <div className="flex items-center justify-between">
+      <header className="container mx-auto px-5 lg:px-8 py-4 sticky top-0 bg-white/80 backdrop-blur-xl z-50 border-b border-zinc-100">
+        <div className="flex items-center justify-between gap-4">
           <Link to="/" className="shrink-0">
             <img alt="Bitbandy" className="h-10" src="https://bitbandy.com/_next/image?url=%2Fimages%2Fbitbandy.png&w=256&q=75" />
           </Link>
 
-          <nav className="hidden lg:flex items-center gap-7 shrink-0">
-            <Link to="/events" className="text-[14px] font-normal text-purple-600">Events</Link>
-            <Link to="/about" className="text-[14px] font-normal text-zinc-400 hover:text-zinc-700">About</Link>
-            <Link to="/contact-us" className="text-[14px] font-normal text-zinc-400 hover:text-zinc-700">Contact</Link>
+          <nav className="hidden lg:flex items-center gap-6 shrink-0">
+            <Link to="/events" className="text-[14px] font-medium text-purple-700 bg-purple-50 px-4 py-2 rounded-xl">Events</Link>
+            <Link to="/about" className="text-[14px] font-medium text-zinc-600 hover:text-zinc-900">About Us</Link>
+            <Link to="/contact" className="text-[14px] font-medium text-zinc-600 hover:text-zinc-900">Contact</Link>
+            <Link to="/how-it-works" className="text-[14px] font-medium text-zinc-600 hover:text-zinc-900">How it works</Link>
           </nav>
 
-          <form className="hidden lg:flex flex-1 max-w-[380px] items-center gap-2.5 h-10 rounded-lg px-3 bg-zinc-100 ml-8">
-            <button type="submit" aria-label="Search" className="shrink-0 text-zinc-400">
-              <SearchIcon />
-            </button>
+          <form className="hidden lg:flex flex-1 max-w-[420px] items-center gap-3 h-11 rounded-full px-4 bg-zinc-50 border border-zinc-200 ml-8">
+            <SearchIcon />
             <input
               type="search"
-              placeholder="Search events, artists, venues…"
-              className="flex-1 bg-transparent text-[13px] text-zinc-700 placeholder:text-zinc-400 focus:outline-none"
+              placeholder="Search events, artists, venues..."
+              className="flex-1 bg-transparent text-[14px] text-zinc-700 placeholder:text-zinc-400 focus:outline-none"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </form>
 
-          <div className="flex items-center gap-2 shrink-0">
-            <button className="hidden lg:flex items-center h-9 px-3 rounded-lg text-[13px] font-normal text-zinc-600 hover:bg-zinc-100 transition-colors">
-              <HelpIcon />
-            </button>
-            <Link to="/login" className="hidden lg:flex items-center h-9 px-4 rounded-lg text-[13px] font-normal text-zinc-600 hover:bg-zinc-100 transition-colors">Log in</Link>
-            <Link to="/signup" className="hidden lg:flex items-center h-9 px-4 rounded-lg text-[13px] font-normal bg-brand-accent text-white hover:bg-brand-accent-hover transition-colors">Sign up</Link>
+          <div className="flex items-center gap-3 shrink-0">
+            <Link to="/login" className="hidden lg:flex items-center gap-2 h-11 px-4 rounded-xl text-[14px] font-medium text-zinc-700 hover:bg-zinc-50 transition-colors">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+              Log In
+            </Link>
+            <Link to="/signup" className="hidden lg:flex items-center gap-2 h-11 px-6 rounded-xl text-[14px] font-medium bg-purple-600 text-white hover:bg-purple-700 transition-colors">
+              Sign Up
+            </Link>
             <button
               type="button"
               aria-label="Open menu"
-              className="lg:hidden relative z-70 w-11 h-11 flex items-center justify-center ml-1 text-zinc-600"
+              className="lg:hidden relative z-70 w-10 h-10 flex items-center justify-center text-zinc-600"
               onClick={() => setMobileMenuOpen(true)}
             >
               <MenuIcon />
@@ -728,139 +762,65 @@ const BitbandyHomepage = () => {
                 backgroundColor: '#f3e8ff'
               }}
             >
+              {/* Decorative elements */}
+              <div className="absolute top-10 right-10 w-8 h-8 rounded-full bg-orange-400"></div>
+              <div className="absolute top-16 right-4 w-16 h-24 opacity-30">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M0 50 Q 25 25 50 50 T 100 50" stroke="#9139f6" strokeWidth="4" strokeLinecap="round"/>
+                  <path d="M0 65 Q 25 40 50 65 T 100 65" stroke="#9139f6" strokeWidth="4" strokeLinecap="round"/>
+                  <path d="M0 80 Q 25 55 50 80 T 100 80" stroke="#9139f6" strokeWidth="4" strokeLinecap="round"/>
+                </svg>
+              </div>
+              
               <div className="relative px-6 pt-8 pb-8 lg:px-12 lg:pt-12 lg:pb-12">
                 <div className="relative z-10">
-                  <p className="text-[10px] font-normal text-zinc-600 uppercase tracking-[0.2em] mb-4 lg:text-[11px]">Accra · Kumasi · Tamale · Ghana</p>
-                  <h1 className="font-heading font-bold text-[40px] leading-[1.1] tracking-tight text-zinc-900 mb-4 lg:text-[64px] lg:mb-6">
-                    <br /><br />AROUND YOU<br />WITH <span className="text-brand-accent">Bitbandy!</span>
+                  <p className="text-[11px] font-normal text-purple-600 uppercase tracking-[0.2em] mb-4">ACCRA · KUMASI · TAMALE · GHANA</p>
+                  <h1 className="font-heading font-bold text-[42px] leading-[1.05] tracking-tight text-zinc-900 mb-4 lg:text-[60px]">
+                    <br /><br />AROUND YOU<br />WITH <span className="text-purple-600">Bitbandy!</span>
                   </h1>
-                  <p className="text-[14px] text-zinc-700 leading-relaxed max-w-[320px] mb-6 lg:text-[16px] lg:max-w-[380px]">Music, comedy, corporate, sports, everything happening near you, all in one place.</p>
-                  <div className="flex items-center gap-4">
-                    <Link to="/discover" className="bg-brand-accent text-white font-semibold text-[14px] px-7 py-3.5 rounded-xl whitespace-nowrap lg:text-[15px] hover:bg-brand-accent-hover transition-colors">Browse Events</Link>
-                    <Link to="/host" className="text-[14px] font-semibold text-zinc-800 hover:text-zinc-900 transition-colors flex items-center gap-1">Host an event <ArrowRightIcon /></Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Hero Carousel */}
-        <section className="px-5 pt-10 lg:px-0">
-          <div className="lg:max-w-[1280px] lg:mx-auto lg:px-8 lg:py-8">
-            <div className="bg-white rounded-3xl overflow-hidden shadow-lg lg:flex lg:h-[450px]">
-              {/* Left - Image & Overlay Content */}
-              <div className="relative h-[250px] lg:h-full lg:flex-1 shrink-0 overflow-hidden rounded-t-3xl lg:rounded-l-3xl lg:rounded-tr-none">
-                {heroSlides.map((slide, idx) => (
-                  <div
-                    key={slide.id}
-                    className={`hero-slide absolute inset-0 transition-opacity duration-500 ${activeSlide === idx ? 'opacity-100' : 'opacity-0'}`}
-                  >
-                    <img src={slide.image} alt={slide.title} className="object-cover w-full h-full" />
-                    
-                    {/* Top Badges */}
-                    <div className="absolute top-6 left-6 right-6 z-10 flex items-center justify-between">
-                      <div className="flex items-center gap-2 px-4 py-2 rounded-2xl bg-white/20 backdrop-blur-md">
-                        <Calendar size={16} color="white" />
-                        <span className="text-white text-sm font-medium">{slide.date}</span>
-                      </div>
-                      <div className="flex items-center gap-2 px-4 py-2 rounded-2xl bg-white/20 backdrop-blur-md">
-                        <Clock size={16} color="white" />
-                        <span className="text-white text-sm font-medium">{slide.countdown}</span>
-                      </div>
-                    </div>
-
-                    {/* Category Badge */}
-                    <div className="absolute top-24 left-6 z-10">
-                      <div className="inline-flex items-center gap-2 bg-black/60 backdrop-blur-md text-white text-xs font-medium uppercase tracking-widest px-4 py-2 rounded-full border border-white/20">
-                        <span className="w-2 h-2 rounded-full" style={{ backgroundColor: '#9139f6' }}></span>
-                        <span>{slide.category}</span>
-                      </div>
-                    </div>
-
-                    {/* Gradient Overlay */}
-                    <div className="absolute left-0 right-0 bottom-0 h-32 bg-gradient-to-t from-black/80 to-transparent"></div>
-
-                    {/* Organizer Info */}
-                    <div className="absolute bottom-6 left-6 right-6 z-10 flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/20 backdrop-blur-md border border-white/30">
-                          <div className="w-6 h-6 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold text-xs">
-                            {slide.organizer.charAt(0)}
-                          </div>
-                        </div>
-                        <span className="text-white text-sm font-medium">{slide.organizer}</span>
-                      </div>
-                    </div>
-
-                    {/* Slide Indicators */}
-                    <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2">
-                      {heroSlides.map((_, idx) => (
-                        <button
-                          key={idx}
-                          onClick={() => setActiveSlide(idx)}
-                          className={`h-1.5 rounded-full transition-all duration-300 ${
-                            activeSlide === idx ? 'w-10 bg-brand-accent' : 'w-4 bg-white/30'
-                          }`}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Right - Details */}
-              <div className="px-6 pt-6 pb-6 lg:w-[380px] lg:shrink-0 lg:flex lg:flex-col lg:justify-between lg:p-10 bg-white">
-                <div>
-                  <div className="flex items-center gap-3 mb-3">
-                    <span className="text-brand-accent text-xs font-semibold uppercase tracking-widest">{heroSlides[activeSlide].category} EVENT</span>
-                    <span className="text-zinc-400 text-xs">·</span>
-                    <span className="text-zinc-400 text-xs">{heroSlides[activeSlide].date}</span>
-                  </div>
-                  <h2 className="font-heading font-bold text-[36px] text-zinc-900 leading-tight mb-4 line-clamp-2">{heroSlides[activeSlide].title}</h2>
+                  <p className="text-[15px] text-zinc-700 leading-relaxed max-w-md mb-7 lg:text-[16px]">Music, comedy, corporate, sports, everything happening near you, all in one place.</p>
                   
-                  <div className="space-y-2 mb-6">
-                    <div className="flex items-center gap-2">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a1a1aa" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                        <circle cx="12" cy="10" r="3"></circle>
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-8">
+                    <Link to="/discover" className="bg-purple-600 text-white font-semibold text-[15px] px-8 py-3.5 rounded-xl hover:bg-purple-700 transition-colors flex items-center gap-2 shadow-lg shadow-purple-200">
+                      Browse Events
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M5 12h14" />
+                        <path d="m12 5 7 7-7 7" />
                       </svg>
-                      <span className="text-zinc-600">{heroSlides[activeSlide].venue}</span>
+                    </Link>
+                    <Link to="/host" className="text-[15px] font-semibold text-zinc-800 bg-white border border-zinc-200 px-6 py-3.5 rounded-xl hover:bg-zinc-50 transition-colors flex items-center gap-2">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2z" />
+                      </svg>
+                      Create an Event
+                    </Link>
+                  </div>
+                  
+                  {/* Social proof */}
+                  <div className="flex items-center gap-4">
+                    <div className="flex -space-x-2">
+                      <div className="w-9 h-9 rounded-full border-2 border-white overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop" alt="User" className="w-full h-full object-cover" />
+                      </div>
+                      <div className="w-9 h-9 rounded-full border-2 border-white overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" alt="User" className="w-full h-full object-cover" />
+                      </div>
+                      <div className="w-9 h-9 rounded-full border-2 border-white overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&h=100&fit=crop" alt="User" className="w-full h-full object-cover" />
+                      </div>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a1a1aa" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <polyline points="12 6 12 12 16 14"></polyline>
-                      </svg>
-                      <span className="text-zinc-600">1:00 AM</span>
+                    <div>
+                      <p className="text-[14px] font-semibold text-zinc-800">50K+ people discovering events</p>
+                      <p className="text-[12px] text-zinc-500">across Nigeria and beyond</p>
                     </div>
                   </div>
-
-                  <div className="border-t border-zinc-100 pt-6">
-                    <p className="text-[10px] text-zinc-400 mb-1 uppercase tracking-wide">From</p>
-                    <p className="text-[32px] font-bold text-zinc-900 leading-none">₦{heroSlides[activeSlide].price.toLocaleString()}</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-3 mt-8">
-                  <button className="flex-1 bg-brand-accent text-white font-semibold text-sm px-6 py-4 rounded-xl hover:bg-brand-accent-hover transition-colors flex items-center justify-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-                      <line x1="3" y1="10" x2="21" y2="10"></line>
-                      <path d="M16 13a4 4 0 0 1-8 0"></path>
-                    </svg>
-                    Buy Tickets
-                  </button>
-                  <button className="w-14 h-14 flex items-center justify-center rounded-xl bg-purple-50 text-purple-500 hover:bg-purple-100 transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                    </svg>
-                  </button>
                 </div>
               </div>
             </div>
           </div>
         </section>
+
+
 
 
 
@@ -932,51 +892,224 @@ const BitbandyHomepage = () => {
 
         {/* <BrowseCategories /> */}
 
-        {/* CTA for Organizers */}
-        <section className="px-5 mt-4 lg:px-0 lg:mt-8">
+        {/* For Organizers Section */}
+        <section className="px-5 lg:px-0">
           <div className="lg:max-w-[1280px] lg:mx-auto lg:px-8">
-            <div className="rounded-3xl px-6 py-8 relative overflow-hidden lg:px-16 lg:py-14 lg:flex lg:items-center lg:justify-between" style={{ background: 'linear-gradient(135deg, rgb(59, 7, 100) 0%, rgb(76, 29, 149) 45%, rgb(30, 27, 75) 100%)' }}>
-              <div className="relative">
-                <p className="text-[10px] font-normal text-purple-300/70 uppercase tracking-[0.2em] mb-4 lg:text-[11px]">For Organizers</p>
-                <h2
-                  className="font-heading font-[400] text-[30px] leading-[30px] tracking-wide text-white mb-4 lg:text-[42px] lg:leading-[42px]"
-                >
-                  HOST YOUR<br />
-                  NEXT EVENT<br />
-                  <span style={{ color: '#c084fc' }}>WITH US.</span>
-                </h2>                <p className="text-[13px] text-purple-200/60 leading-relaxed mb-7 max-w-[240px] lg:text-[15px] lg:max-w-[360px] lg:mb-0">Simple setup, fraud-proof tickets, and instant payouts.</p>
+            <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#4a1d96] to-[#1e1b4b] px-6 py-10 lg:px-12 lg:py-12">
+              {/* Decorative background elements */}
+              <div className="absolute inset-0 opacity-20">
+                <svg viewBox="0 0 1000 400" className="w-full h-full">
+                  <circle cx="100" cy="200" r="200" fill="white" opacity="0.1"/>
+                  <circle cx="800" cy="100" r="150" fill="white" opacity="0.08"/>
+                </svg>
               </div>
-              <div className="relative flex items-center gap-4 lg:flex-col lg:items-start lg:gap-3 lg:shrink-0">
-                <Link to="/host" className="text-zinc-900 font-normal text-[14px] px-6 py-3 rounded-xl lg:text-[15px] lg:px-8 lg:py-4 lg:w-full transition-colors" style={{ backgroundColor: '#c084fc' }}>Create an Event</Link>
-                <Link to="/for-organizers" className="text-[13px] font-normal text-purple-300/70 lg:text-[14px] hover:text-purple-200 transition-colors">Learn more <ArrowRightIcon /></Link>
+              
+              <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-10">
+                {/* Left content */}
+                <div className="flex-1">
+                  <p className="text-[11px] font-semibold text-purple-300 uppercase tracking-[0.2em] mb-4">FOR ORGANIZERS</p>
+                  <h2 className="font-heading font-bold text-[28px] lg:text-[40px] text-white mb-4">Become an Organizer</h2>
+                  <p className="text-[14px] text-purple-200/90 max-w-md mb-6">Create events, sell tickets, manage attendees and grow your community with BitBandy.</p>
+                  
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                    <Link to="/host" className="bg-purple-600 text-white font-semibold text-[15px] px-8 py-3.5 rounded-xl hover:bg-purple-500 transition-colors flex items-center gap-2 shadow-lg shadow-purple-900/30">
+                      Create an Event
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M5 12h14" />
+                        <path d="m12 5 7 7-7 7" />
+                      </svg>
+                    </Link>
+                    <Link to="/for-organizers" className="text-[14px] font-semibold text-purple-200 hover:text-white transition-colors flex items-center gap-2">
+                      Learn more about organizing
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M5 12h14" />
+                        <path d="m12 5 7 7-7 7" />
+                      </svg>
+                    </Link>
+                  </div>
+                </div>
+                
+                {/* Right stats and phone mockup (desktop only) */}
+                <div className="flex items-start gap-8 lg:flex-1 lg:justify-end">
+                  {/* Stats grid */}
+                  <div className="hidden lg:grid grid-cols-2 gap-4">
+                    <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c084fc" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                      </svg>
+                      <p className="text-[24px] font-bold text-white mt-2">50K+</p>
+                      <p className="text-[12px] text-purple-200">Tickets Sold</p>
+                    </div>
+                    <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c084fc" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                        <circle cx="8.5" cy="7" r="4" />
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                      </svg>
+                      <p className="text-[24px] font-bold text-white mt-2">1K+</p>
+                      <p className="text-[12px] text-purple-200">Events Hosted</p>
+                    </div>
+                    <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c084fc" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                      </svg>
+                      <p className="text-[24px] font-bold text-white mt-2">₦20M+</p>
+                      <p className="text-[12px] text-purple-200">Revenue Generated</p>
+                    </div>
+                    <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c084fc" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M8 14s1.5 2 4 2 4-2 4-2" />
+                        <line x1="9" y1="9" x2="9.01" y2="9" />
+                        <line x1="15" y1="9" x2="15.01" y2="9" />
+                      </svg>
+                      <p className="text-[24px] font-bold text-white mt-2">99.9%</p>
+                      <p className="text-[12px] text-purple-200">Uptime & Support</p>
+                    </div>
+                  </div>
+                  
+                  {/* Phone mockup */}
+                  <div className="hidden lg:block relative w-[240px] h-[380px]">
+                    <div className="absolute inset-0 bg-gradient-to-br from-purple-400 to-purple-700 rounded-[32px] p-2 shadow-2xl">
+                      <div className="w-full h-full bg-black rounded-[28px] overflow-hidden flex flex-col">
+                        <div className="bg-zinc-900 p-4 flex items-center gap-2">
+                          <div className="w-8 h-8 rounded-full bg-zinc-700 flex items-center justify-center">
+                            <div className="w-4 h-4 rounded-full bg-purple-500"></div>
+                          </div>
+                          <div className="text-white text-xs font-medium">Your Event</div>
+                        </div>
+                        <div className="flex-1 bg-gradient-to-br from-zinc-800 to-zinc-900 p-4">
+                          <div className="text-white text-xs mb-2">Sales Overview</div>
+                          <div className="text-white text-2xl font-bold mb-1">₦2,560,000</div>
+                          <div className="text-green-400 text-xs mb-4">+32.5% vs last month</div>
+                          <div className="h-20 flex items-end gap-1">
+                            <div className="flex-1 bg-purple-500/50 rounded-t-md" style={{ height: '40%' }}></div>
+                            <div className="flex-1 bg-purple-500/50 rounded-t-md" style={{ height: '60%' }}></div>
+                            <div className="flex-1 bg-purple-500 rounded-t-md" style={{ height: '85%' }}></div>
+                            <div className="flex-1 bg-purple-500/50 rounded-t-md" style={{ height: '50%' }}></div>
+                            <div className="flex-1 bg-purple-500/50 rounded-t-md" style={{ height: '70%' }}></div>
+                          </div>
+                          <div className="mt-6 flex items-center justify-between">
+                            <div>
+                              <div className="text-white text-xs">Tickets Sold</div>
+                              <div className="text-white text-lg font-bold">1,250</div>
+                            </div>
+                            <div className="w-12 h-12 rounded-full bg-purple-600/20 flex items-center justify-center">
+                              <div className="w-8 h-8 rounded-full border-4 border-purple-600 border-l-transparent rotate-45"></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
+
+
         {/* Footer */}
-        <footer className="mt-12 border-t border-zinc-200">
+        <footer className="bg-zinc-50 pt-12 pb-8">
           <div className="lg:max-w-[1280px] lg:mx-auto lg:px-8">
-            <div className="px-5 lg:px-0 pt-10 pb-8 lg:flex lg:gap-16">
-              <div className="mb-8 lg:mb-0 lg:shrink-0 lg:w-52">
-                <img src="https://bitbandy.com/_next/image?url=%2Fimages%2Fbitbandy.png&w=256&q=75" alt="Bitbandy" className="h-10 mb-2" />
-                <p className="text-[12px] text-zinc-400 leading-relaxed">Discover and host events across Nigeria.</p>
-                <div className="flex items-center gap-4 mt-5">
-                  <SocialIcon href="#" icon="x" />
+            <div className="px-5 lg:px-0 mb-10 grid grid-cols-1 lg:grid-cols-6 gap-10">
+              {/* Brand */}
+              <div className="lg:col-span-2">
+                <Link to="/" className="shrink-0 inline-block mb-4">
+                  <img alt="Bitbandy" className="h-10" src="https://bitbandy.com/_next/image?url=%2Fimages%2Fbitbandy.png&w=256&q=75" />
+                </Link>
+                <p className="text-[13px] text-zinc-600 leading-relaxed mb-5">The easiest way to discover and book amazing events across Nigeria and beyond.</p>
+                <div className="flex items-center gap-4">
                   <SocialIcon href="#" icon="instagram" />
+                  <SocialIcon href="#" icon="x" />
                   <SocialIcon href="#" icon="tiktok" />
+                  <a href="#" className="w-8 h-8 rounded-lg bg-zinc-200 flex items-center justify-center hover:bg-zinc-300 transition-colors">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#71717a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                    </svg>
+                  </a>
                 </div>
               </div>
-              <div className="flex-1 grid grid-cols-2 gap-x-6 gap-y-8 lg:grid-cols-4 lg:gap-x-8">
-                <FooterColumn title="Platform" links={['Browse Events', 'For Organizers', 'Host an Event', 'My Tickets']} />
-                <FooterColumn title="Company" links={['About Bitbandy', 'Sign up', 'Sign in']} />
-                <FooterColumn title="Support" links={['Help Centre', 'Contact us', 'Common issues']} />
-                <FooterColumn title="Legal" links={['Terms', 'Privacy', 'Cookies']} />
+
+              {/* Platform */}
+              <div>
+                <h4 className="text-[11px] font-semibold text-purple-600 uppercase tracking-[0.15em] mb-4">Platform</h4>
+                <ul className="space-y-3">
+                  {['Browse Events', 'Categories', 'For Organizers', 'Create an Event', 'My Tickets', 'Pricing'].map((link) => (
+                    <li key={link}>
+                      <Link to="#" className="text-[13px] text-zinc-600 hover:text-zinc-900 transition-colors">{link}</Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Company */}
+              <div>
+                <h4 className="text-[11px] font-semibold text-purple-600 uppercase tracking-[0.15em] mb-4">Company</h4>
+                <ul className="space-y-3">
+                  {['About BitBandy', 'Careers', 'Blog', 'Contact Us', 'Partners', 'Press Kit'].map((link) => (
+                    <li key={link}>
+                      <Link to="#" className="text-[13px] text-zinc-600 hover:text-zinc-900 transition-colors">{link}</Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Resources */}
+              <div>
+                <h4 className="text-[11px] font-semibold text-purple-600 uppercase tracking-[0.15em] mb-4">Resources</h4>
+                <ul className="space-y-3">
+                  {['Help Centre', 'Event Tips', 'Community', 'Support', 'FAQs'].map((link) => (
+                    <li key={link}>
+                      <Link to="#" className="text-[13px] text-zinc-600 hover:text-zinc-900 transition-colors">{link}</Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Legal + Newsletter */}
+              <div>
+                <div className="mb-8">
+                  <h4 className="text-[11px] font-semibold text-purple-600 uppercase tracking-[0.15em] mb-4">Legal</h4>
+                  <ul className="space-y-3">
+                    {['Terms of Service', 'Privacy Policy', 'Cookies Policy', 'Refund Policy'].map((link) => (
+                      <li key={link}>
+                        <Link to="#" className="text-[13px] text-zinc-600 hover:text-zinc-900 transition-colors">{link}</Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="text-[11px] font-semibold text-purple-600 uppercase tracking-[0.15em] mb-4">Stay in the Loop</h4>
+                  <p className="text-[12px] text-zinc-600 mb-3">Get the best events, updates and exclusive offers in your inbox.</p>
+                  <div className="space-y-2">
+                    <input type="email" placeholder="Enter your email" className="w-full px-4 py-2.5 rounded-lg border border-zinc-200 text-[13px] focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 bg-white" />
+                    <button className="w-full bg-purple-600 text-white text-[13px] font-semibold py-2.5 rounded-lg hover:bg-purple-700 transition-colors">Subscribe</button>
+                  </div>
+                </div>
               </div>
             </div>
-            <div className="px-5 lg:px-0 pb-8 border-t border-zinc-100 pt-5 flex items-center justify-between">
-              <p className="text-[11px] text-zinc-400">© 2026 Bitbandy. All rights reserved.</p>
-              <span className="text-[10px] font-normal text-green-600 uppercase tracking-widest">NG</span>
+
+            <div className="px-5 lg:px-0 border-t border-zinc-200 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
+              <p className="text-[12px] text-zinc-500">© 2026 BitBand. All rights reserved.</p>
+              <div className="flex items-center gap-2">
+                <span className="text-[12px] text-zinc-500">Made with</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#a855f7" stroke="#a855f7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                </svg>
+                <span className="text-[12px] text-zinc-500">in Nigeria</span>
+                <span className="text-[12px] text-zinc-500">🇳🇬</span>
+              </div>
+              <div className="flex items-center gap-2 text-[12px] text-zinc-500">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="10" r="8" />
+                  <path d="m12 18 4 4" />
+                  <path d="M8 22l4-4" />
+                </svg>
+                <span>NG</span>
+              </div>
             </div>
           </div>
         </footer>
