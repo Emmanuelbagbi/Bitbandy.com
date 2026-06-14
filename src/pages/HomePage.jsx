@@ -1007,7 +1007,7 @@ const BitbandyHomepage = () => {
               </div>
             </div>
           </div>
-        </section>
+        </section><br /> <br />
 
 
 
