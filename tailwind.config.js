@@ -16,8 +16,8 @@ export default {
         "vibe-header-bg": "#ffffff",
       },
       fontFamily: {
-        sans: ['"Special Gothic Expanded One"', 'sans-serif'],
-        heading: ['"Special Gothic Expanded One"', 'sans-serif'],
+        sans: ['Inter', 'sans-serif'],
+        heading: ['"Monument Extended"', 'sans-serif'],
       },
     },
   },

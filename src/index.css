@@ -1,4 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Pathway+Gothic+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@font-face {
+  font-family: 'Monument Extended';
+  src: url('./assets/MonumentExtended-FreeForPersonalUse/MonumentExtended-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Monument Extended';
+  src: url('./assets/MonumentExtended-FreeForPersonalUse/MonumentExtended-Ultrabold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
 
 @tailwind base;
 @tailwind components;
@@ -9,8 +23,9 @@
     font-family: 'Inter', sans-serif;
   }
   .font-heading {
-    font-family: 'Pathway Gothic One', sans-serif;
-    letter-spacing: 0.05em;
+    font-family: 'Monument Extended', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0;
   }
 }
 

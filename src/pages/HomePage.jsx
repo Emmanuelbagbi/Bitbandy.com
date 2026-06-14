@@ -93,6 +93,18 @@ const freeLowCostEvents = [
     countdown: '9 days',
     image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&h=400&fit=crop',
   },
+  {
+    id: 'cmqb10abc1234defghijklmn',
+    title: 'Community Book Swap',
+    date: 'Sat, Jun 29',
+    venue: 'Ikeja City Mall',
+    location: 'Lagos',
+    price: 'FREE',
+    category: 'Lifestyle',
+    organizer: 'Book Lovers NG',
+    countdown: '16 days',
+    image: 'https://images.unsplash.com/photo-1478720568477-152d9b164e63?w=600&h=400&fit=crop',
+  },
 ];
 
 const trendingEvents = [
@@ -237,129 +249,347 @@ const FreeLowCostSection = () => {
   const swiperRef = React.useRef(null);
 
   return (
-    <section className="py-8 bg-purple-50/40">
+    <section className="py-8 bg-white">
+      <div className="lg:max-w-[1280px] lg:mx-auto lg:px-8">
+        {/* Container with rounded corners and light background */}
+        <div className="mx-5 lg:mx-0 rounded-3xl bg-purple-50/40 p-6 lg:p-8 relative overflow-hidden">
+          {/* Decorative elements (curly line and star) */}
+          <div className="absolute -right-4 top-10 w-32 h-24 text-purple-300 opacity-50">
+            <svg viewBox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 30 Q 30 10, 50 30 T 90 30" stroke="currentColor" strokeWidth="4" strokeLinecap="round" fill="none"/>
+            </svg>
+          </div>
+          <div className="absolute -right-1 top-28 w-6 h-6 text-purple-400">
+            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L13.5 8.5L20 9L15 13L16.5 20L12 16L7.5 20L9 13L4 9L10.5 8.5L12 2Z"/>
+            </svg>
+          </div>
+          
+          {/* Header */}
+          <div className="flex items-center justify-between gap-3 mb-8">
+            <div className="flex items-center gap-4 min-w-0">
+              <div className="hidden lg:flex shrink-0 h-14 w-14 items-center justify-center rounded-2xl bg-purple-100 text-purple-700">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 15V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2Z"></path>
+                  <path d="M7 10h.01"></path>
+                  <path d="M10 10h4"></path>
+                </svg>
+              </div>
+              <div className="min-w-0">
+                <h2 className="font-heading font-bold text-xl text-gray-900">Budget Friendly Picks</h2>
+                <p className="text-gray-500 text-sm">Handpicked events that are fun and easy on your wallet.</p>
+              </div>
+            </div>
+            <Link to="/discover?category=free" className="hidden lg:flex items-center gap-2 text-purple-600 font-semibold text-sm hover:text-purple-700 transition-colors shrink-0">
+              See more free events
+              <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14" />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </div>
+            </Link>
+          </div>
+
+          {/* Event Cards */}
+          <div className="pb-4">
+            <Swiper
+              ref={swiperRef}
+              modules={[Navigation, Pagination, A11y]}
+              spaceBetween={16}
+              slidesPerView={1}
+              pagination={{ 
+                clickable: true,
+                el: '.custom-swiper-pagination',
+                bulletClass: 'swiper-pagination-bullet w-2 h-2 rounded-full bg-purple-300',
+                bulletActiveClass: 'swiper-pagination-bullet-active w-8 h-2 rounded-full bg-purple-600',
+              }}
+              breakpoints={{
+                640: {
+                  slidesPerView: 2,
+                  spaceBetween: 16,
+                },
+                768: {
+                  slidesPerView: 2,
+                  spaceBetween: 16,
+                },
+                1024: {
+                  slidesPerView: 2,
+                  spaceBetween: 24,
+                },
+              }}
+              className="w-full"
+            >
+              {freeLowCostEvents.map((event) => (
+                <SwiperSlide key={event.id}>
+                  <Link to={`/events/${event.id}`} className="block">
+                    <div className="bg-white rounded-3xl shadow-sm border border-purple-100 overflow-hidden hover:shadow-md transition-shadow flex flex-col lg:flex-row">
+                      {/* Image */}
+                      <div className="relative w-full lg:w-2/5 shrink-0">
+                        <img 
+                          src={event.image} 
+                          alt={event.title} 
+                          className="w-full h-48 lg:h-full object-cover rounded-t-3xl lg:rounded-tl-3xl lg:rounded-tr-none"
+                        />
+                        {event.price === 'FREE' ? (
+                          <div className="absolute top-4 left-4 bg-green-100 text-green-700 px-3 py-1.5 rounded-xl font-semibold text-xs">
+                            FREE
+                          </div>
+                        ) : (
+                          <div className="absolute top-4 left-4 bg-purple-100 text-purple-700 px-3 py-1.5 rounded-xl font-semibold text-xs">
+                            {event.price}
+                          </div>
+                        )}
+                      </div>
+                      {/* Content */}
+                      <div className="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                          <div className="flex items-center gap-2 mb-4">
+                            <div className="w-9 h-9 rounded-xl bg-purple-100 flex items-center justify-center text-purple-600">
+                              {event.category === 'Lifestyle' && (
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                </svg>
+                              )}
+                              {event.category === 'Entertainment' && (
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                  <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                                </svg>
+                              )}
+                              {event.category === 'Health' && (
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+                                </svg>
+                              )}
+                            </div>
+                            <span className="text-purple-600 font-semibold text-sm capitalize">{event.category}</span>
+                          </div>
+                          <h3 className="font-heading font-bold text-2xl text-gray-900 mb-6">{event.title}</h3>
+                          <div className="space-y-3">
+                            <div className="flex items-center gap-2 text-gray-500 text-sm">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-purple-500">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                              </svg>
+                              <span className="font-medium">{event.date} • 10:00 AM</span>
+                            </div>
+                            <div className="flex items-center gap-2 text-gray-500 text-sm">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-purple-500">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                              </svg>
+                              <span className="font-medium">{event.venue}, {event.location}</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2 text-purple-600 font-semibold text-sm mt-8">
+                          <div className="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                              <path d="m9 18 6-6-6-6" />
+                            </svg>
+                          </div>
+                          View details
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+          
+          {/* Pagination */}
+          <div className="custom-swiper-pagination flex justify-center gap-2 mt-4"></div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// Category data: name, link, gradient, SVG icon, event count
+const categoriesBrowse = [
+  {
+    name: 'Music',
+    href: '/discover?category=music',
+    gradient: 'linear-gradient(135deg, #3b0764 0%, #6d28d9 100%)',
+    icon: (
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <path d="M8 18 C8 10 24 10 24 18" stroke="white" strokeWidth="2" strokeLinecap="round" />
+        <rect x="4.5" y="17" width="6" height="9" rx="3" fill="rgba(167,139,250,0.35)" stroke="white" strokeWidth="1.8" />
+        <rect x="21.5" y="17" width="6" height="9" rx="3" fill="rgba(167,139,250,0.35)" stroke="white" strokeWidth="1.8" />
+      </svg>
+    ),
+    eventCount: 48,
+  },
+  {
+    name: 'Comedy',
+    href: '/discover?category=comedy',
+    gradient: 'linear-gradient(135deg, #78350f 0%, #d97706 100%)',
+    icon: (
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <circle cx="16" cy="16" r="11" stroke="white" strokeWidth="1.8" fill="rgba(251,191,36,0.1)" />
+        <circle cx="12" cy="13" r="1.8" fill="white" />
+        <circle cx="20" cy="13" r="1.8" fill="white" />
+        <path d="M10 18 Q16 27 22 18" stroke="white" strokeWidth="1.8" fill="rgba(251,191,36,0.25)" strokeLinecap="round" />
+        <circle cx="9.5" cy="18" r="2" fill="rgba(251,191,36,0.45)" />
+        <circle cx="22.5" cy="18" r="2" fill="rgba(251,191,36,0.45)" />
+      </svg>
+    ),
+    eventCount: 19,
+  },
+  {
+    name: 'Corporate',
+    href: '/discover?category=corporate',
+    gradient: 'linear-gradient(135deg, #1e3a5f 0%, #1d4ed8 100%)',
+    icon: (
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <rect x="5" y="13" width="22" height="15" rx="3" stroke="white" strokeWidth="1.8" fill="rgba(56,189,248,0.12)" />
+        <path d="M12 13 V10 Q12 7.5 14 7.5 H18 Q20 7.5 20 10 V13" stroke="white" strokeWidth="1.8" fill="none" strokeLinecap="round" />
+        <line x1="5" y1="20.5" x2="27" y2="20.5" stroke="rgba(255,255,255,0.45)" strokeWidth="1.4" strokeLinecap="round" />
+        <rect x="14" y="18.5" width="4" height="4" rx="1.2" stroke="white" strokeWidth="1.5" fill="rgba(56,189,248,0.4)" />
+      </svg>
+    ),
+    eventCount: 34,
+  },
+  {
+    name: 'Parties',
+    href: '/discover?category=parties',
+    gradient: 'linear-gradient(135deg, #500724 0%, #be185d 100%)',
+    icon: (
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <path d="M5 27 L17 12 L21 16 Z" stroke="white" strokeWidth="1.8" fill="rgba(251,113,133,0.2)" strokeLinejoin="round" strokeLinejoin="round" />
+        <circle cx="21" cy="9" r="3" fill="rgba(251,191,36,0.85)" />
+        <circle cx="26" cy="15" r="2.2" fill="rgba(251,113,133,0.8)" />
+        <circle cx="18" cy="5" r="1.8" fill="rgba(167,139,250,0.85)" />
+        <circle cx="27" cy="7.5" r="1.5" fill="rgba(132,204,22,0.85)" />
+        <path d="M19 13 Q23 10 25 13 Q27 16 23 18" stroke="white" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+      </svg>
+    ),
+    eventCount: 27,
+  },
+  {
+    name: 'Sports',
+    href: '/discover?category=sports',
+    gradient: 'linear-gradient(135deg, #14532d 0%, #16a34a 100%)',
+    icon: (
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <path d="M20 3 L11 17 H17.5 L13 29 L23 14 H16.5 Z" stroke="white" strokeWidth="1.8" fill="rgba(132,204,22,0.25)" strokeLinejoin="round" strokeLinejoin="round" />
+      </svg>
+    ),
+    eventCount: 15,
+  },
+  {
+    name: 'Learning',
+    href: '/discover?category=education',
+    gradient: 'linear-gradient(135deg, #0c4a6e 0%, #0284c7 100%)',
+    icon: (
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <path d="M16 8 Q11 7 5 9 L5 24 Q11 22 16 24 Z" stroke="white" strokeWidth="1.8" fill="rgba(56,189,248,0.15)" strokeLinejoin="round" />
+        <path d="M16 8 Q21 7 27 9 L27 24 Q21 22 16 24 Z" stroke="white" strokeWidth="1.8" fill="rgba(56,189,248,0.08)" strokeLinejoin="round" />
+        <line x1="16" y1="8" x2="16" y2="24" stroke="white" strokeWidth="2" strokeLinecap="round" />
+        <line x1="8" y1="13.5" x2="13.5" y2="13" stroke="rgba(255,255,255,0.4)" strokeWidth="1.2" strokeLinecap="round" />
+        <line x1="8" y1="17" x2="13.5" y2="16.5" stroke="rgba(255,255,255,0.4)" strokeWidth="1.2" strokeLinecap="round" />
+        <line x1="18.5" y1="13.5" x2="24" y2="13" stroke="rgba(255,255,255,0.4)" strokeWidth="1.2" strokeLinecap="round" />
+        <line x1="18.5" y1="17" x2="24" y2="16.5" stroke="rgba(255,255,255,0.4)" strokeWidth="1.2" strokeLinecap="round" />
+      </svg>
+    ),
+    eventCount: 22,
+  },
+  {
+    name: 'Fashion',
+    href: '/discover?category=fashion',
+    gradient: 'linear-gradient(135deg, #4a044e 0%, #db2777 100%)',
+    icon: (
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <path d="M16 5 Q20 5 20 9 Q20 12 16 12" stroke="white" strokeWidth="2" fill="none" strokeLinecap="round" />
+        <path d="M16 12 L5 22 Q4 24 5.5 25 H26.5 Q28 24 27 22 L16 12" stroke="white" strokeWidth="1.8" fill="rgba(236,72,153,0.18)" strokeLinejoin="round" />
+      </svg>
+    ),
+    eventCount: 11,
+  },
+  {
+    name: 'Free Events',
+    href: '/discover?category=free',
+    gradient: 'linear-gradient(135deg, #451a03 0%, #b45309 100%)',
+    icon: (
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <path d="M16 4 L18.8 12 H27 L20.6 16.8 L23 25 L16 20.5 L9 25 L11.4 16.8 L5 12 H13.2 Z" stroke="white" strokeWidth="1.8" fill="rgba(251,191,36,0.22)" strokeLinejoin="round" />
+        <circle cx="25" cy="5.5" r="1.8" fill="rgba(251,191,36,0.75)" />
+        <circle cx="7.5" cy="7" r="1.2" fill="rgba(251,191,36,0.6)" />
+        <circle cx="27" cy="23" r="1" fill="rgba(251,191,36,0.5)" />
+      </svg>
+    ),
+    eventCount: 36,
+  },
+];
+
+const BrowseCategories = () => {
+  return (
+    <section className="py-12 px-0 lg:px-0">
       <div className="lg:max-w-[1280px] lg:mx-auto lg:px-8">
         {/* Header */}
-        <div className="flex items-center justify-between gap-3 px-5 lg:px-0 mb-8">
-          <div className="flex items-center gap-4 min-w-0">
-            <div className="shrink-0 flex h-14 w-14 items-center justify-center rounded-2xl bg-purple-100 text-purple-700">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M2 9V5a2 2 0 0 1 2-2h3l2 2h6l2-2h3a2 2 0 0 1 2 2v4"></path>
-                <rect x="2" y="9" width="20" height="10" rx="2"></rect>
-                <path d="M6 14h.01"></path>
-                <path d="M10 14h4"></path>
-              </svg>
-            </div>
-            <div className="min-w-0">
-              <h2 className="font-heading font-bold text-xl text-gray-900">Budget Friendly Picks</h2>
-              <p className="text-gray-500 text-sm">Handpicked events that are fun and easy on your wallet.</p>
-            </div>
-          </div>
-          <Link to="/discover?category=free" className="hidden lg:flex items-center gap-2 text-purple-600 font-semibold text-sm hover:text-purple-700 transition-colors shrink-0">
-            See more free events
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <div className="flex items-baseline justify-between mb-5 mx-5 lg:mx-0">
+          <h2 className="font-heading text-[18px] tracking-wide text-black" style={{ color: 'black' }}>
+            BROWSE
+          </h2>
+          <Link
+            className="text-[12px] font-semibold text-brand-accent card-press flex items-center gap-1"
+            to="/discover"
+          >
+            All categories
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="inline align-middle shrink-0"
+            >
               <path d="M5 12h14" />
               <path d="m12 5 7 7-7 7" />
             </svg>
           </Link>
         </div>
 
-        {/* Event Cards */}
-        <div className="px-5 lg:px-0 pb-4">
-          <Swiper
-            ref={swiperRef}
-            modules={[Navigation, Pagination, A11y]}
-            spaceBetween={16}
-            slidesPerView={1}
-            pagination={{ 
-              clickable: true,
-              el: '.custom-swiper-pagination',
-              bulletClass: 'swiper-pagination-bullet w-2 h-2 rounded-full bg-gray-300',
-              bulletActiveClass: 'swiper-pagination-bullet-active w-8 h-2 rounded-full bg-purple-600',
-             }}
-            breakpoints={{
-              640: {
-                slidesPerView: 2,
-                spaceBetween: 16,
-              },
-              768: {
-                slidesPerView: 3,
-                spaceBetween: 16,
-              },
-              1024: {
-                slidesPerView: 3,
-                spaceBetween: 20,
-              },
-              1280: {
-                slidesPerView: 4,
-                spaceBetween: 20,
-              },
-            }}
-            className="w-full"
-          >
-            {freeLowCostEvents.map((event) => (
-              <SwiperSlide key={event.id}>
-                <Link to={`/events/${event.id}`} className="block">
-                  <div className="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
-                    <div className="relative">
-                      <img 
-                        src={event.image} 
-                        alt={event.title} 
-                        className="w-full h-40 object-cover"
-                      />
-                      {event.price === 'FREE' && (
-                        <div className="absolute top-3 left-3 bg-green-100 text-green-700 px-2.5 py-1 rounded-lg font-bold text-xs">
-                          FREE
-                        </div>
-                      )}
-                    </div>
-                    <div className="p-4">
-                      <div className="flex items-center gap-2 mb-2">
-                        <div className="w-7 h-7 rounded-lg bg-purple-100 flex items-center justify-center text-purple-600">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5V6A2.5 2.5 0 0 1 6.5 2H20v0"></path>
-                          </svg>
-                        </div>
-                        <span className="text-purple-600 font-semibold text-xs capitalize">{event.category}</span>
-                      </div>
-                      <h3 className="font-heading font-bold text-lg text-gray-900 mb-3">{event.title}</h3>
-                      <div className="space-y-2 mb-4">
-                        <div className="flex items-center gap-2 text-gray-500 text-xs">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-purple-500">
-                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                            <line x1="16" y1="2" x2="16" y2="6"></line>
-                            <line x1="8" y1="2" x2="8" y2="6"></line>
-                            <line x1="3" y1="10" x2="21" y2="10"></line>
-                          </svg>
-                          <span className="font-medium">{event.date} • 10:00 AM</span>
-                        </div>
-                        <div className="flex items-center gap-2 text-gray-500 text-xs">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-purple-500">
-                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                            <circle cx="12" cy="10" r="3"></circle>
-                          </svg>
-                          <span className="font-medium">{event.location}</span>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-2 text-purple-600 font-semibold text-sm">
-                        <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="m9 18 6-6-6-6" />
-                          </svg>
-                        </div>
-                        View details
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+        {/* Categories Grid */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 lg:gap-3 mx-5 lg:mx-0">
+          {categoriesBrowse.map((category) => (
+            <Link
+              key={category.name}
+              className="card-press relative flex items-center gap-3 h-[68px] lg:h-[80px] px-4 rounded-xl overflow-hidden"
+              style={{ background: category.gradient }}
+              to={category.href}
+            >
+              {/* Noise overlay */}
+              <div
+                className="absolute inset-0 opacity-[0.06] pointer-events-none"
+                style={{
+                  backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+                  backgroundSize: '120px',
+                }}
+                aria-hidden="true"
+              />
+              {/* Icon */}
+              <span className="relative shrink-0 z-10">{category.icon}</span>
+              {/* Text */}
+              <div className="relative z-10 flex flex-col items-start min-w-0">
+                <span className="text-[13px] font-semibold text-white leading-snug">
+                  {category.name}
+                </span>
+                <span className="text-[11px] text-white/50 font-medium">
+                  {category.eventCount} events
+                </span>
+              </div>
+            </Link>
+          ))}
         </div>
-        
-        {/* Pagination */}
-        <div className="custom-swiper-pagination flex justify-center gap-2 mt-4"></div>
       </div>
     </section>
   );
@@ -587,7 +817,7 @@ const BitbandyHomepage = () => {
                     <span className="text-zinc-400 text-xs">·</span>
                     <span className="text-zinc-400 text-xs">{heroSlides[activeSlide].date}</span>
                   </div>
-                  <h2 className="font-heading font-bold text-[36px] text-zinc-900 leading-tight mb-4">{heroSlides[activeSlide].title}</h2>
+                  <h2 className="font-heading font-bold text-[36px] text-zinc-900 leading-tight mb-4 line-clamp-2">{heroSlides[activeSlide].title}</h2>
                   
                   <div className="space-y-2 mb-6">
                     <div className="flex items-center gap-2">
@@ -701,153 +931,7 @@ const BitbandyHomepage = () => {
         <FreeLowCostSection />
 
         {/* Browse Categories Grid */}
-        <section className="py-12 px-0 lg:px-0">
-          <div className="lg:max-w-[1280px] lg:mx-auto lg:px-8">
-            {/* Background container */}
-            <div className="relative bg-gradient-to-br from-white to-[#f8f0ff] lg:rounded-3xl p-4 sm:p-8 lg:p-12 overflow-hidden">
-              {/* Decorative elements - top right dots */}
-              <div className="absolute top-0 right-0 w-48 h-48 opacity-40">
-                <svg viewBox="0 0 100 100" fill="none">
-                  <circle cx="10" cy="10" r="3" fill="#9139f6" />
-                  <circle cx="26" cy="10" r="3" fill="#9139f6" />
-                  <circle cx="42" cy="10" r="3" fill="#9139f6" />
-                  <circle cx="58" cy="10" r="3" fill="#9139f6" />
-                  <circle cx="74" cy="10" r="3" fill="#9139f6" />
-                  <circle cx="90" cy="10" r="3" fill="#9139f6" />
-                  <circle cx="10" cy="26" r="3" fill="#9139f6" />
-                  <circle cx="26" cy="26" r="3" fill="#9139f6" />
-                  <circle cx="42" cy="26" r="3" fill="#9139f6" />
-                  <circle cx="58" cy="26" r="3" fill="#9139f6" />
-                  <circle cx="74" cy="26" r="3" fill="#9139f6" />
-                  <circle cx="90" cy="26" r="3" fill="#9139f6" />
-                  <circle cx="10" cy="42" r="3" fill="#9139f6" />
-                  <circle cx="26" cy="42" r="3" fill="#9139f6" />
-                  <circle cx="42" cy="42" r="3" fill="#9139f6" />
-                  <circle cx="58" cy="42" r="3" fill="#9139f6" />
-                  <circle cx="74" cy="42" r="3" fill="#9139f6" />
-                  <circle cx="90" cy="42" r="3" fill="#9139f6" />
-                  <circle cx="10" cy="58" r="3" fill="#9139f6" />
-                  <circle cx="26" cy="58" r="3" fill="#9139f6" />
-                  <circle cx="42" cy="58" r="3" fill="#9139f6" />
-                  <circle cx="58" cy="58" r="3" fill="#9139f6" />
-                  <circle cx="74" cy="58" r="3" fill="#9139f6" />
-                  <circle cx="90" cy="58" r="3" fill="#9139f6" />
-                </svg>
-              </div>
-              
-              {/* Decorative elements - bottom left circles */}
-              <div className="absolute bottom-0 left-0 w-64 h-48 opacity-20">
-                <svg viewBox="0 0 200 100" fill="none">
-                  <circle cx="50" cy="80" r="40" stroke="#9139f6" strokeWidth="2" />
-                  <circle cx="120" cy="90" r="60" stroke="#9139f6" strokeWidth="1" />
-                </svg>
-              </div>
-              
-              {/* Header */}
-              <div className="relative z-10 flex flex-col lg:flex-row lg:items-end lg:justify-between mb-10">
-                <div>
-                  <div className="relative inline-block mb-4">
-                    <h3 className="text-[#9139f6] text-[12px] font-semibold tracking-widest uppercase">BROWSE</h3>
-                    <div className="absolute bottom-[-8px] left-0 w-8 h-1 bg-[#9139f6] rounded-full"></div>
-                  </div>
-                  <h2 className="font-heading font-bold text-[36px] lg:text-[42px] text-zinc-900 leading-tight mb-2">
-                category
-                  </h2>
-                  <p className="text-[14px] text-zinc-600">Find exactly what you're into.</p>
-                </div>
-                <Link to="/discover" className="hidden lg:inline-flex items-center gap-2 text-[14px] font-medium text-[#9139f6] bg-white px-5 py-2.5 rounded-full border border-[#9139f6]/30 hover:bg-[#9139f6] hover:text-white transition-all duration-200 mt-4 lg:mt-0">
-                  All categories
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M5 12h14" />
-                    <path d="m12 5 7 7-7 7" />
-                  </svg>
-                </Link>
-              </div>
-              
-              {/* Categories grid */}
-              <div className="relative z-10 grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-5">
-                <CategoryCard 
-                  title="Music" 
-                  count="48 events" 
-                  iconGradient="linear-gradient(135deg, #6d28d9 0%, #a855f7 100%)" 
-                  icon={<NewMusicIcon />} 
-                  rightShape={`
-                    <svg viewBox="0 0 100 100" fill="none">
-                      <path d="M0 100 Q50 0 100 100 Z" fill="#d8b4fe" />
-                    </svg>
-                  `}
-                />
-                <CategoryCard 
-                  title="Comedy" 
-                  count="19 events" 
-                  iconGradient="linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%)" 
-                  icon={<NewComedyIcon />} 
-                  rightShape={`
-                    <svg viewBox="0 0 100 100" fill="none">
-                      <path d="M0 0 Q50 100 100 0 Z" fill="#fde68a" />
-                      <path d="M20 100 Q60 0 100 100 Z" fill="#fed7aa" />
-                    </svg>
-                  `}
-                />
-                <CategoryCard 
-                  title="Corporate" 
-                  count="34 events" 
-                  iconGradient="linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%)" 
-                  icon={<NewCorporateIcon />} 
-                  rightShape={`
-                    <svg viewBox="0 0 100 100" fill="none">
-                      <path d="M0 0 L60 0 L100 100 L0 100 Z" fill="#bfdbfe" />
-                      <line x1="10" y1="30" x2="70" y2="30" stroke="#93c5fd" strokeWidth="3" />
-                      <line x1="20" y1="50" x2="80" y2="50" stroke="#93c5fd" strokeWidth="3" />
-                      <line x1="30" y1="70" x2="90" y2="70" stroke="#93c5fd" strokeWidth="3" />
-                    </svg>
-                  `}
-                />
-                <CategoryCard 
-                  title="Parties" 
-                  count="27 events" 
-                  iconGradient="linear-gradient(135deg, #be185d 0%, #ec4899 100%)" 
-                  icon={<NewPartiesIcon />} 
-                  rightShape={`
-                    <svg viewBox="0 0 100 100" fill="none">
-                      <path d="M0 0 L100 0 L100 100 Q50 50 0 100 Z" fill="#fbcfe8" />
-                      <polygon points="70,70 75,80 85,80 77,87 80,97 70,90 60,97 63,87 55,80 65,80" fill="#fdf4ff" />
-                      <polygon points="80,60 83,67 90,67 85,71 87,78 80,74 73,78 75,71 70,67 77,67" fill="#fdf4ff" />
-                    </svg>
-                  `}
-                />
-                <CategoryCard 
-                  title="Sports" 
-                  count="15 events" 
-                  iconGradient="linear-gradient(135deg, #15803d 0%, #22c55e 100%)" 
-                  icon={<NewSportsIcon />} 
-                  rightShape={`<svg viewBox="0 0 100 100" fill="none"><path d="M0 0 L40 0 L100 100 L0 100 Z" fill="#dcfce7" /><circle cx="20" cy="30" r="4" fill="#86efac" /><circle cx="35" cy="30" r="4" fill="#86efac" /><circle cx="50" cy="30" r="4" fill="#86efac" /><circle cx="65" cy="30" r="4" fill="#86efac" /><circle cx="80" cy="30" r="4" fill="#86efac" /><circle cx="20" cy="45" r="4" fill="#86efac" /><circle cx="35" cy="45" r="4" fill="#86efac" /><circle cx="50" cy="45" r="4" fill="#86efac" /><circle cx="65" cy="45" r="4" fill="#86efac" /><circle cx="80" cy="45" r="4" fill="#86efac" /><circle cx="20" cy="60" r="4" fill="#86efac" /><circle cx="35" cy="60" r="4" fill="#86efac" /><circle cx="50" cy="60" r="4" fill="#86efac" /><circle cx="65" cy="60" r="4" fill="#86efac" /><circle cx="80" cy="60" r="4" fill="#86efac" /></svg>`}
-                />
-                <CategoryCard 
-                  title="Learning" 
-                  count="22 events" 
-                  iconGradient="linear-gradient(135deg, #0e7490 0%, #06b6d4 100%)" 
-                  icon={<NewLearningIcon />} 
-                  rightShape={`<svg viewBox="0 0 100 100" fill="none"><path d="M0 0 Q30 50 0 100 L100 100 L100 0 Z" fill="#a5f3fc" /></svg>`}
-                />
-                <CategoryCard 
-                  title="Fashion" 
-                  count="11 events" 
-                  iconGradient="linear-gradient(135deg, #db2777 0%, #f43f5e 100%)" 
-                  icon={<NewFashionIcon />} 
-                  rightShape={`<svg viewBox="0 0 100 100" fill="none"><path d="M0 0 L100 0 L100 100 Z" fill="#fecdd3" /><path d="M-10 80 Q45 40 100 80" stroke="#fda4af" strokeWidth="5" fill="none" /><path d="M-10 90 Q45 50 100 90" stroke="#fda4af" strokeWidth="5" fill="none" /></svg>`}
-                />
-                <CategoryCard 
-                  title="Free Events" 
-                  count="36 events" 
-                  iconGradient="linear-gradient(135deg, #ea580c 0%, #f97316 100%)" 
-                  icon={<NewFreeIcon />} 
-                  rightShape={`<svg viewBox="0 0 100 100" fill="none"><path d="M0 0 Q50 100 100 0 L100 100 L0 100 Z" fill="#fed7aa" /><rect x="15" y="20" width="8" height="8" rx="2" fill="#fdba74" /><rect x="33" y="20" width="8" height="8" rx="2" fill="#fdba74" /><rect x="51" y="20" width="8" height="8" rx="2" fill="#fdba74" /><rect x="69" y="20" width="8" height="8" rx="2" fill="#fdba74" /><rect x="15" y="38" width="8" height="8" rx="2" fill="#fdba74" /><rect x="33" y="38" width="8" height="8" rx="2" fill="#fdba74" /><rect x="51" y="38" width="8" height="8" rx="2" fill="#fdba74" /><rect x="69" y="38" width="8" height="8" rx="2" fill="#fdba74" /><rect x="15" y="56" width="8" height="8" rx="2" fill="#fdba74" /><rect x="33" y="56" width="8" height="8" rx="2" fill="#fdba74" /><rect x="51" y="56" width="8" height="8" rx="2" fill="#fdba74" /><rect x="69" y="56" width="8" height="8" rx="2" fill="#fdba74" /></svg>`}
-                />
-              </div>
-            </div>
-          </div>
-        </section>
+        <BrowseCategories />
 
         {/* CTA for Organizers */}
         <section className="px-5 mt-4 lg:px-0 lg:mt-8">
